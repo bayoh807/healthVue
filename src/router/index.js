@@ -2,12 +2,12 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
     { 
-        path: '/',
-        redirect: '/herry' 
+        path: '/pwa/',
+        redirect: '/pwa/herry' 
     },
     {
         name : 'doctor',
-        path: '/:name',
+        path: '/pwa/:name',
         component: require('@/view/main/home.vue').default
     },
     // {

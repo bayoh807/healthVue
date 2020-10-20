@@ -1,5 +1,7 @@
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+
 const path = require('path');
-// 載入 html-webpack-plugin (第一步)
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 
@@ -81,6 +83,33 @@ module.exports = {
         filename: './../index.html',
       }),
     // make sure to include the plugin!
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new WebpackPwaManifest({
+      publicPath : './work',
+      name: 'My Progressive Web App',
+      short_name: 'MyPWA',
+      description: 'My awesome Progressive Web App!',
+      background_color: '#ffffff',
+      crossorigin: 'use-credentials', //can be null, use-credentials or anonymous,
+      start_url: "/pwa",
+      icons: [
+        {
+          src: path.resolve('src/media/assets/icon.png'),
+          sizes: [96, 128, 192, 256, 384, 512], // multiple sizes,
+          destination: path.join('./../src/media', 'assets')
+        },
+        {
+          src: path.resolve('src/media/assets/icon.png'),
+          destination: path.join('./../src/media', 'assets'),
+          size: '1024x1024' // you can also use the specifications pattern
+        },
+        {
+          src: path.resolve('src/media/assets/icon.png'),
+          destination: path.join('./../src/media', 'assets'),
+          size: '1024x1024',
+          purpose: 'maskable'
+        }
+      ]
+    })
   ]
 };
