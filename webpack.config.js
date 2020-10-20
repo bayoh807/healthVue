@@ -9,7 +9,7 @@ module.exports = {
     index : './src/index.js'
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist/js'),
     filename: '[name].bundle.js'
   },
   devServer: {
@@ -50,6 +50,12 @@ module.exports = {
             use: [
                 {
                     loader: 'file-loader',
+                    options: {
+                      name: '[path][name].[ext]',
+                      publicPath: '../media/img',
+                      outputPath: '../media/img'
+                    } 
+                
                 },
             ],
         },
