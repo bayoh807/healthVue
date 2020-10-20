@@ -1,0 +1,35 @@
+@import './reset.css';
+
+
+@function re-width($param){
+    @return calc( $param / 750 * min(100vw, 750px) )
+};
+
+#main {
+    overflow-x:hidden;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    background: url('../media/main/icv5.png') no-repeat;
+    background-size: cover;
+    background-position: top center;
+    display: flex;
+    flex-direction : column;
+    justify-content : flex-start;
+    align-items : center;
+
+    #header{
+        width: 100%;
+        max-width: 100vmin;
+        content: url('../media/main/header2.png');
+
+    }
+
+    #container{
+        max-width: 100vmin;
+        width: 100%;
+        box-sizing : border-box; 
+        padding: 0 5vmin;
+    }
+
+}

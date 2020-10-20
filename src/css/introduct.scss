@@ -1,0 +1,119 @@
+@import './all.scss';
+
+#introduction
+{
+    width: 100%;
+    max-height: 25vmin;
+    margin: 2vmin 0;
+    box-sizing : border-box; 
+    padding: 2vmin 3vmin;
+    display: flex;
+    
+    #avatar{
+        width: 6rem;
+        min-width: 20vmin;
+        max-width: 25vmin;
+        text-align: center;
+
+  
+        img{
+            width: 100%;
+            border-radius: 50%;
+        }
+    }
+
+    #avatar_content
+    {
+
+        color: white;
+        width: inherit;
+        height: inherit;
+        box-sizing : border-box; 
+        padding: 1vmin 0vmin 1vmin 3vmin;
+
+        #title{
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+
+            h1{
+                @include fontSet(7vmin,400);
+                span{
+                    @include spacing();
+                }
+            }
+            
+            h2{
+                @include fontSet(3vmin,400,4vmin);
+                @include spacing(0.2rem);
+            }
+        }
+
+   
+    }
+}
+#container
+{
+    // overflow: hidden;
+    #slider_content{
+        width: 100%;
+        display: flex;
+        overflow-x:auto;
+        overflow-y:hidden;
+        // box-sizing : border-box; 
+        // padding: 0 4vmin;
+
+        .slider{
+            background: linear-gradient(223deg, #244066, #eef2f7);
+            background-size: 400% 400%;
+        
+            width: 88vmin;
+            height: 50vmin;
+            background: url('img/component/formBorder.png') no-repeat;
+            background-size : contain ;
+            flex-shrink:0;
+            box-sizing : border-box; 
+            padding: 0 1vmin;
+            // margin: 0 5vmin 0 5vmin;
+            margin: 0 5vmin 0 0;
+            // animation: fadeUpIn 5s ease-in-out;
+            animation-name: fadeUpIn;/*跟這個標籤(#square)說要執行的動畫名字*/
+            animation-duration: 3s;/*跟標籤(#square)說這個動畫要跑多久，我設定1秒即是我完成這個動畫需要1秒的時間*/
+            animation-iteration-count: 1; /*跟標籤(#square)說這個動畫要執行幾次，1就是執行1次不會重複*/
+        }
+        
+    }
+
+    
+    #slider_content::-webkit-scrollbar {
+        /*隱藏滾輪*/
+        display: none;
+    }
+}
+
+@keyframes fadeUpIn  {
+    0% {
+        /*要讓他往右移，所以使用translateX屬性*/
+        /*opacity的意思是透明度*/
+        /*這邊先設定動畫初始值*/
+        // transform: translateX(-100px);
+        opacity: 0.2;
+    }
+    100% {
+        // transform: translateX(0);
+        opacity: 1;
+    }
+
+
+    // 0% {
+    //     opacity: 0;
+    //     transform: translate3d(10vmin, 0, 0);
+    //   }
+    
+    //   100% {
+    //     opacity: 1;
+    //     transform: none;
+    //   }
+}
+

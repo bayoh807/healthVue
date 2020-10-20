@@ -1,0 +1,11 @@
+// $letter-spacing : 0.5rem;
+
+@mixin spacing($letter-spacing:0.5rem){
+    letter-spacing : $letter-spacing;
+  }
+
+@mixin fontSet($size:1.5rem,$weight:300,$line:auto){
+    font-size : $size;
+    font-weight: $weight;
+    line-height: $line;
+}
