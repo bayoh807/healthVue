@@ -23,7 +23,7 @@ module.exports = {
       'vue': '@vue/runtime-dom',
       'vuex': 'vuex/dist/vuex.esm-bundler',
       '@': path.join(__dirname, 'src'),
-      'img': path.join(__dirname, 'src/media'),
+      // 'img': path.join(__dirname, 'src/media'),
     }
   },
   module: {
@@ -51,9 +51,9 @@ module.exports = {
                 {
                     loader: 'file-loader',
                     options: {
-                      name: '[path][name].[ext]',
-                      publicPath: './../../img',
-                      outputPath: '/'
+                      name: './../[path][name].[ext]',
+                      // publicPath: './../media/img',
+                      outputPath: './../media'
                     } 
                 
                 },
@@ -78,7 +78,7 @@ module.exports = {
     new HtmlWebpackPlugin({
         // 配置 HTML 模板路徑與生成名稱 (第三步)
         template: './dist/index.html',
-        filename: 'index.html',
+        filename: './../index.html',
       }),
     // make sure to include the plugin!
     new VueLoaderPlugin()
