@@ -28,9 +28,11 @@ export default {
 </style>
 
 <style scoped>
+
    #slider_content{
        display: flex;
         overflow-x:auto;
         overflow-y:hidden;
    }
+   
 </style>
