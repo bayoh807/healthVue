@@ -30,5 +30,8 @@
     "webpack-dev-server": "^3.11.0",
     "webpack-pwa-manifest": "^4.2.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "axios": "^0.21.0",
+    "vue-axios": "^3.1.3"
+  }
 }

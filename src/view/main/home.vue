@@ -1,6 +1,8 @@
 <template>
-    <Introduction />
-    <Slider />
+    <div id="container">    
+        <Introduction />
+        <Slider />
+    </div>
 </template>
 
 <script>
@@ -21,4 +23,14 @@ export default {
 <style lang="scss">
 @import './../../css/introduct.scss';
 
+
+
+</style>
+
+<style scoped>
+   #slider_content{
+       display: flex;
+        overflow-x:auto;
+        overflow-y:hidden;
+   }
 </style>
