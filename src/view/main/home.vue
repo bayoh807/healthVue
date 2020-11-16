@@ -22,3 +22,7 @@ export default {
 @import './../../css/introduct.scss';
 
 </style>
+
+https://www.fubi7.cc/
+test5
+test5
