@@ -6,7 +6,7 @@
                 <div class="fromQuestion">
                     <div class="homeTitle">請問您的身份是?</div>
                     <span class="homeInput">
-                        <FormButton v-for="item in first" :key="item" v-bind:obj="item"/>
+                        <FormButton v-for="item in first" :key="item" v-bind="item"/>
                     </span>
                 </div>
             </div>
@@ -79,11 +79,12 @@ export default {
         
     },
     created() {
-        this.rep = apiPostHome({
+             this.rep = apiPostHome({
                 'doctor':'harry'
             }).then((response) => {
+                console.log(response);
                 response.data.data.map((val,id) => {
-                  
+          
                     if(val.kind == 0)
                     {
                         this.four.push ({
