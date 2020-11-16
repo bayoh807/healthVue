@@ -82,7 +82,6 @@ export default {
         this.rep = apiPostHome({
                 'doctor':'harry'
             }).then((response) => {
-                console.log(response.data.data );
                 response.data.data.map((val,id) => {
                   
                     if(val.kind == 0)

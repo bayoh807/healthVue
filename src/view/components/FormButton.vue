@@ -1,6 +1,6 @@
 <template>
     <span class="formButton" >
-        <input type="radio" name="" v-model="val"/>
+        <input type="radio" v-name="" v-model="val"/>
     </span>
 </template>
 <script>
