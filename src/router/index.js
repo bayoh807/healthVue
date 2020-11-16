@@ -3,16 +3,16 @@ import { createRouter, createWebHistory } from 'vue-router';
 const routes = [
     { 
         path: '/',
-        redirect: '/herry' 
+        redirect: '/herry/information' 
     },
     {
         name : 'doctor',
-        path: '/:name',
+        path: '/:name/information',
         component: require('@/view/main/home.vue').default
     },
     {
-      path: '/questionList',
-      component: require('@/view/main/questionList.vue').default
+      path: '/:name/list',
+      component: require('@/view/main/list.vue').default
     },
     // {
     //   path: '/:catchAll(.*)',

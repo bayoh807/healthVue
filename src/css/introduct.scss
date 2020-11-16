@@ -58,26 +58,25 @@
     // overflow: hidden;
     #slider_content{
         width: 100%;
-        display: flex;
-        overflow-x:auto;
-        overflow-y:hidden;
-        // box-sizing : border-box; 
+        // display: flex;
+        // overflow-x:auto;
+        // overflow-y:hidden;
+        box-sizing : border-box; 
         // padding: 0 4vmin;
 
         .slider{
             background: linear-gradient(223deg, #244066, #eef2f7);
             background-size: 400% 400%;
         
-            width: 88vmin;
+            width: 84vmin;
             height: 50vmin;
             // background: url('./component/formBorder.png') no-repeat;
             background: url('./../../media/component/formBorder.png') no-repeat;
             background-size : contain ;
             flex-shrink:0;
             box-sizing : border-box; 
-            padding: 0 1vmin;
-            // margin: 0 5vmin 0 5vmin;
-            margin: 0 5vmin 0 0;
+            // padding: 0 5vmin;
+            margin: 0 0 0 3vmin;
             // animation: fadeUpIn 5s ease-in-out;
             animation-name: fadeUpIn;/*跟這個標籤(#square)說要執行的動畫名字*/
             animation-duration: 3s;/*跟標籤(#square)說這個動畫要跑多久，我設定1秒即是我完成這個動畫需要1秒的時間*/
