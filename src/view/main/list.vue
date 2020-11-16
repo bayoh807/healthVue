@@ -21,34 +21,26 @@
     </div>
 </template>
 <script>
+import store from '@/store';
+import { apiPostList } from '@/api';
 
 export default {
+    
     data(){
 
     },
       created() {
-        //取出路由參數
-        store.state.doctor = this.$route.params.name;
+     
 
-        this.rep = apiPostHome({
-                'doctor' : store.state.doctor
+        this.rep = apiPostList({
+                'identity' : 1,
+                'age' : 60,
+                'kind' : 1,
+                'direction': 4
             }).then((response) => {
                 response.data.data.map((val,id) => {
+                  console.log(val);
                   
-                    if(val.kind == 0)
-                    {
-                        this.four.push ({
-                            no : val.no,
-                            title : val.title
-                        })
-                    }
-                    else
-                    {
-                        this.five.push ({
-                            no : val.no,
-                            title : val.title
-                        })
-                    }
                 })
             });
     },

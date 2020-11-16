@@ -6,14 +6,16 @@
                 <div class="fromQuestion">
                     <div class="homeTitle">請問您的身份是?</div>
                     <span class="homeInput">
-                        <FormButton v-for="item in first" :key="item" v-bind="item"/>
+                        <FormButton v-for="item in first" :key="item" v-bind:obj="item"/>
                     </span>
                 </div>
             </div>
             <div class="slider">
                 <div class="fromQuestion">
                     <div class="homeTitle">請問患者是?</div>
-                    <span class="homeInput">請問您的身份是?</span>
+                    <span class="homeInput">
+                        <FormButton v-for="item in second" :key="item" v-bind:obj="item"/>
+                    </span>
                 </div>
             </div>
             <div class="slider">
@@ -61,12 +63,12 @@ export default {
            ],
            second : [
                {
-                   text : '男',
+                   text : '男性',
                    name : 'gender',
                    val : 1
                },
                {
-                   text : '女',
+                   text : '女性',
                    name : 'gender',
                    val : 0
                }
@@ -79,28 +81,29 @@ export default {
         
     },
     created() {
-             this.rep = apiPostHome({
-                'doctor':'harry'
-            }).then((response) => {
-                console.log(response);
-                response.data.data.map((val,id) => {
-          
-                    if(val.kind == 0)
-                    {
-                        this.four.push ({
-                            no : val.no,
-                            title : val.title
-                        })
-                    }
-                    else
-                    {
-                        this.five.push ({
-                            no : val.no,
-                            title : val.title
-                        })
-                    }
-                })
-            });
+        store.state.doctor = this.$route.params.name
+        this.rep = apiPostHome({
+            'doctor' : store.state.doctor
+        }).then((response) => {
+            console.log(response);
+            response.data.data.map((val,id) => {
+        
+                if(val.kind == 0)
+                {
+                    this.four.push ({
+                        no : val.no,
+                        title : val.title
+                    })
+                }
+                else
+                {
+                    this.five.push ({
+                        no : val.no,
+                        title : val.title
+                    })
+                }
+            })
+        });
     },
     components : {
         Introduction,

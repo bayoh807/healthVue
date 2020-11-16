@@ -42,6 +42,7 @@ let instance = axios.create({
 //request攔截器
 instance.interceptors.request.use(
   (config) => {
+    console.log(config);
     return config;
 },(error) => {
   return Promise.reject(error);
