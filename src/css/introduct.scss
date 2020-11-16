@@ -75,12 +75,40 @@
             background-size : contain ;
             flex-shrink:0;
             box-sizing : border-box; 
-            // padding: 0 5vmin;
-            margin: 0 0 0 3vmin;
+            padding: 0 auto;
+            margin: 0 2vmin;
             // animation: fadeUpIn 5s ease-in-out;
             animation-name: fadeUpIn;/*跟這個標籤(#square)說要執行的動畫名字*/
             animation-duration: 3s;/*跟標籤(#square)說這個動畫要跑多久，我設定1秒即是我完成這個動畫需要1秒的時間*/
             animation-iteration-count: 1; /*跟標籤(#square)說這個動畫要執行幾次，1就是執行1次不會重複*/
+
+            .fromQuestion
+            {
+                width: 100%;
+                height: 40vmin;
+                color : white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-evenly;
+
+                .homeTitle 
+                {
+                    width: 80%;
+                    //文字左右對齊填滿
+                    display:block; 
+                    text-align:justify;
+                    text-align-last:justify;
+                }
+
+                .homeInput
+                {
+                    width: 80%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                }
+            }
         }
         
     }

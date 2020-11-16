@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 const routes = [
     { 
         path: '/',
-        redirect: '/herry/information' 
+        redirect: '/harry/information' 
     },
     {
         name : 'doctor',
@@ -13,6 +13,10 @@ const routes = [
     {
       path: '/:name/list',
       component: require('@/view/main/list.vue').default
+    },
+    {
+      path: '/:name/question',
+      component: require('@/view/main/question.vue').default
     },
     // {
     //   path: '/:catchAll(.*)',

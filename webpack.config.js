@@ -13,6 +13,7 @@ module.exports = {
     filename: '[name].bundle.js'
   },
   devServer: {
+    publicPath: '/dist/',
     contentBase: path.join(__dirname, 'dist'),
     historyApiFallback : true,
     inline: true, // 文件修改後實時刷新
@@ -79,7 +80,7 @@ module.exports = {
     new HtmlWebpackPlugin({
         // 配置 HTML 模板路徑與生成名稱 (第三步)
         template: './dist/index.html',
-        filename: './../index.html',
+        filename: 'index.html',
       }),
       
     // make sure to include the plugin!
