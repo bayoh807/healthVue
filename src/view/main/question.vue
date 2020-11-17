@@ -2,10 +2,16 @@
     <div id="questionPage">    
         <div class="pageHeader">
             <img class="sharerImg" :src="avatar" >
-            <span class="listSharer" v-html="sharer"></span>
+            <span class="contentSet" style="text-align: left;" v-html="sharer"></span>
         </div>
         <div class="pageTitle">{{ title }}</div>
-        <div class="pageContent" v-html="content"></div>
+        <div class="pageContent">
+            <div id="videoFrame">
+                <div class="videoTitle">影片訪談 : </div>
+                <iframe  width="100%"  :src="video" frameborder="0"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="content contentSet" v-html="content"></div>
+        </div>
     </div>
 </template>
 <script>
@@ -21,12 +27,15 @@ export default {
             index : '',
             title : '',
             avatar : '',
-            sharer : ''
+            sharer : '',
+            content : '',
+            video : '',
         }
     },
     methods : {
          checkValue (obj) {
             console.log(obj);
+            return obj.content;
             if(obj.video_src == "")
             {
                 return obj.content;
@@ -68,6 +77,7 @@ export default {
             // this.title = question.title.replace('{{video}}',"{{" + question.avatar + "}}")
             this.title = question.title;
             this.content = this.checkValue(question);
+            this.video = question.video_src + '';
             // this.data = response.data.data;
             // response.data.data.map((val,id) => {
             //     console.log(val);
@@ -85,10 +95,9 @@ export default {
 </style>
 <style scoped>
     #questionPage{
-        position: fixed;
-        left: 0;
-        width: 100%;
-        text-align: center;
+        margin: 0 -2vmin;
+        width: 100vw;
+        
     }
 
     .pageHeader{
@@ -120,11 +129,15 @@ export default {
                 linear-gradient(to left, #c9c9c9, #c9c9c9) right bottom no-repeat,
                 linear-gradient(to left, #c9c9c9, #c9c9c9) right bottom no-repeat;
         background-size: 4px 30px,20px 4px,4px 30px,20px 4px;
-        
-        
     }
 
-    .listSharer
+    .pageContent
+    {
+        color:white;
+        margin: 0 0 10vmin 0;
+    }
+
+    .contentSet
     {
         letter-spacing: 0.6vmin;
         line-height: 6vmin;
@@ -132,29 +145,37 @@ export default {
 
     .sharerImg{
         max-width: 20vmin;
+        max-height: 20vmin;
         width: 100%;
         height: auto;
         box-sizing : border-box;
         margin: 0 3vmin;
     }
 
-   .listSharer
+   .contentSet
    {
-       text-align: left;
+       
        font-size: 4vmin;
        color: #A9A9A9;
    } 
 
     .videoTitle
-   {
-       font-size: 4vmin;
-       color: #A9A9A9;
-   } 
+    {
+        text-align: center;
+        margin: 5vmin 0;
+        font-size: 4.5vmin;
+        color: #A9A9A9;
+    } 
 
-    #videoFrame
+    #videoFrame iframe
     {
         height: 60vmin;
         margin: 5vmin 0;
+    }
+    .content{
+        padding : 0 12vmin;
+        color: white;
+        font-size: 4vmin;
     }
 </style>
 
