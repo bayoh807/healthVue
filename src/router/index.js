@@ -11,10 +11,12 @@ const routes = [
         component: require('@/view/main/home.vue').default
     },
     {
+      name : 'list',
       path: '/:name/list',
       component: require('@/view/main/list.vue').default
     },
     {
+      name : 'question',
       path: '/:name/question',
       component: require('@/view/main/question.vue').default
     },

@@ -7,6 +7,8 @@ import req from './https.js';
 //登入
 export const apiPostHome = (data) => req('post','/home',data);
 export const apiPostList = (data) => req('post','/list',data);
+export const apiPostQuestion = (data) => req('post','/question',data);
+
 
 // export const apiGetCourses = () => req('get','/course/getCourses');
 // export const apiGetUserData = (params) => req('get','/course/getCourses',params);

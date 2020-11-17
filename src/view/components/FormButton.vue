@@ -40,6 +40,7 @@ export default {
 
 <style  scoped>
     .formButton{
+        cursor: pointer;
         display:block; 
         text-align:justify;
         text-align-last:justify;

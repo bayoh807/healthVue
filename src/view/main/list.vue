@@ -1,49 +1,72 @@
 <template>
     <div id="container">    
         <div id="slider_content">
-            <div class="slider">
-                <div class="fromQuestion">123</div>
-            </div>
-            <div class="slider">
-                <div class="fromQuestion">123</div>
-            </div>
-            <div class="slider">
-                <div class="fromQuestion">123</div>
-            </div>
-            <div class="slider">
-                <div class="fromQuestion">123</div>
-            </div>
+            <QuestionBorder v-for="item in data" :key="item" v-bind:obj="item" />
         </div>
         <div id="reserFooter">
-            <span>您選擇從「生活」，了解白內障</span>
-            <button class="resetChoose">重新選擇</button>
+            <span>您選擇從「 {{ direction }} 」，了解 {{ kind }}</span>
+            <router-link class="link" :to="{ name: 'doctor', params: { name: 'harry' }}"   replace>
+                <button class="resetChoose" @click="resetChoose()">
+                    重新選擇
+                </button>
+            </router-link>
+            <!-- <button class="resetChoose" @click="resetChoose()">
+               
+                    重新選擇
+            </button> -->
         </div>
     </div>
 </template>
 <script>
+import QuestionBorder from '@/view/components/QuestionBorder.vue';
 import store from '@/store';
 import { apiPostList } from '@/api';
-
+  
 export default {
-    
     data(){
-
+        return {
+            kind : store.state.kind.title,
+            direction : store.state.direction.title,
+            data : {}
+        }
     },
-      created() {
-     
-
+    methods : {
+        resetChoose() {
+            store.state = {
+                doctor : '',
+                identity : '',
+                gender : '',
+                age : '',
+                kind : {
+                    'no' : '',
+                    'title' : '',
+                    'kind' : '',
+                },
+                direction : {
+                    'no' : '',
+                    'title' : '',
+                    'kind' : '',
+                }
+            }
+        }
+    },
+    beforeCreate() {
         this.rep = apiPostList({
-                'identity' : 1,
-                'age' : 60,
-                'kind' : 1,
-                'direction': 4
-            }).then((response) => {
-                response.data.data.map((val,id) => {
-                  console.log(val);
-                  
-                })
-            });
+            'identity' : store.state.identity,
+            'age' : store.state.age,
+            'kind' : store.state.kind.no,
+            'direction': store.state.direction.no,
+        }).then((response) => {
+            this.data = response.data.data;
+            // response.data.data.map((val,id) => {
+            //     console.log(val);
+                
+            // })
+        });
     },
+    components : {
+        QuestionBorder
+    }
 }
 </script>
 
@@ -77,12 +100,17 @@ export default {
     }
 
     .resetChoose{
+        font-size: 4vmin;
         border-radius: 5px !important;
         background: #434343;
         color: white;
         border-radius: 10px;
         padding: 1vmin 2vmin;
         border:0px blue none;
+    }
+
+    .slider{
+         margin: 10vmin 2vmin;
     }
 
 </style>

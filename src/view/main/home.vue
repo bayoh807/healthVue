@@ -85,7 +85,6 @@ export default {
         this.rep = apiPostHome({
             'doctor' : store.state.doctor
         }).then((response) => {
-            console.log(response);
             response.data.data.map((val,id) => {
         
                 if(val.kind == 0)
@@ -121,6 +120,9 @@ export default {
 </style>
 
 <style scoped>
+    .fromQuestion{
+        justify-content: space-evenly;
+    }
 
     #slider_content{
         display: flex;
@@ -132,6 +134,10 @@ export default {
     {
         font-size: 4.5vmin;
  
+    }
+
+    .slider{
+        margin: 0 2vmin;
     }
    
 </style>
