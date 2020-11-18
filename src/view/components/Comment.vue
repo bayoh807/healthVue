@@ -133,7 +133,7 @@ export default {
         display:block; 
         text-align:justify;
         text-align-last:justify;
-        width: 20vmin;
+        width: 19vmin;
         font-size: 4vmin;
         padding: 2.7vmin 3vmin;
         box-sizing : border-box; 

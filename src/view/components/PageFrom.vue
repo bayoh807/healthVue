@@ -27,7 +27,7 @@ export default {
     },
     beforeUpdate()
     {
-        console.log('init form');
+
         // this.log = store.state.comment.log,
         // this.back = store.state.comment.back
     }

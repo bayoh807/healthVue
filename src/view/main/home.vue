@@ -19,21 +19,35 @@
                 </div>
             </div>
             <div class="slider">
-                <div class="fromQuestion">
+                <div class="fromQuestion fromRange">
                     <div class="homeTitle">請問患者的年齡是?</div>
-                    <span class="homeInput">請問您的身份是?</span>
+                    <span class="homeRange">
+                        <input id="age_range" type="range" min="16" max="100" step="1" v-model="age"  data-darkreader-inline-bgimage="" data-darkreader-inline-bgcolor="">
+                    </span>
+                     <span class="homeInput">
+                        <span class="homeAge" >
+                            {{ age }}<span style="font-size:5vmin;">歲</span>
+                        </span>
+                        <span class="formButton" >
+                            確認
+                        </span>
+                    </span>
                 </div>
             </div>
             <div class="slider">
                 <div class="fromQuestion">
                     <div class="homeTitle">請問您想要了解的內容是?</div>
-                    <span class="homeInput">請問您的身份是?</span>
+                    <span class="homeInput">
+                        <FormSelect v-bind:obj="four"/>
+                    </span>
                 </div>
             </div>
             <div class="slider">
                 <div class="fromQuestion">
                     <div class="homeTitle">請問您想從哪個面向了解?</div>
-                    <span class="homeInput">請問您的身份是?</span>
+                    <span class="homeInput">
+                        <FormSelect v-bind:obj="five"/>
+                    </span>
                 </div>
             </div>
         </div>
@@ -43,6 +57,7 @@
 <script>
 import Introduction from '@/view/components/Introduction.vue';
 import FormButton from '@/view/components/FormButton.vue';
+import FormSelect from '@/view/components/FormSelect.vue';
 import store from '@/store';
 import { apiPostHome } from '@/api';
 
@@ -75,6 +90,7 @@ export default {
            ],
            four : [],
            five : [],
+           age : 58,
         };
     },
     methods : {
@@ -86,8 +102,7 @@ export default {
             'doctor' : store.state.doctor
         }).then((response) => {
             response.data.data.map((val,id) => {
-        
-                if(val.kind == 0)
+                if(val.kind == 1)
                 {
                     this.four.push ({
                         no : val.no,
@@ -101,12 +116,14 @@ export default {
                         title : val.title
                     })
                 }
+     
             })
         });
     },
     components : {
         Introduction,
-        FormButton
+        FormButton,
+        FormSelect
     }
 }
 
@@ -124,6 +141,30 @@ export default {
         justify-content: space-evenly;
     }
 
+    .fromRange{
+        box-sizing: border-box;
+        padding: 8vmin 0;
+    }
+    .homeAge{
+        color: #378DCD;
+        font-size: 7vmin;
+        margin: 0 5vmin;
+        font-weight: 300;
+    }
+    .formButton{
+        cursor: pointer;
+        display:block; 
+        text-align:justify;
+        text-align-last:justify;
+        width: 19vmin;
+        font-size: 4vmin;
+        padding: 2.7vmin 3vmin;
+        box-sizing : border-box; 
+        background: url('./../../media/component/radioButton.png') no-repeat;
+        background-size: contain;
+        
+    }
+
     #slider_content{
         display: flex;
         overflow-x:auto;
@@ -138,6 +179,13 @@ export default {
 
     .slider{
         margin: 0 2vmin;
+    }
+
+    .homeRange
+    {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
     }
    
 </style>
