@@ -8,6 +8,7 @@ const store = createStore({
     gender : 1,
     age : 60,
     questionNo: '',
+    showInfo : false,
     direction : {
       'no' : '4',
       'title' : '年齡',
@@ -17,6 +18,10 @@ const store = createStore({
       'no' : 1,
       'title' : "白內障手術",
       'kind' : 1,
+    },
+    comment : {
+      log : 0,
+      back : 0,
     }
   },
   getters: {},

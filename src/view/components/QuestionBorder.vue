@@ -42,7 +42,7 @@ export default {
             });
         }
     },
-    created(){
+    beforeCreate(){
         this.index = parseInt(this.index) < 10 ? ('0' + this.index) : this.index;
     },
     components : {

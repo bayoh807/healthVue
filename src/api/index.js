@@ -8,6 +8,7 @@ import req from './https.js';
 export const apiPostHome = (data) => req('post','/home',data);
 export const apiPostList = (data) => req('post','/list',data);
 export const apiPostQuestion = (data) => req('post','/question',data);
+export const apiPostComment = (data) => req('post','/comment',data);
 
 
 // export const apiGetCourses = () => req('get','/course/getCourses');

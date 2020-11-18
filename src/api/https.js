@@ -32,7 +32,7 @@ const errorHandle = (status,msg) => {
 
 //axios實例
 let instance = axios.create({
-  baseURL : 'https://junzunyanw24.sg-host.com/apiServer/public/api/',
+  baseURL : 'http://localhost:8000/api',
   headers : {
      'Content-Type': 'application/json' ,
 
@@ -42,7 +42,6 @@ let instance = axios.create({
 //request攔截器
 instance.interceptors.request.use(
   (config) => {
-    console.log(config);
     return config;
 },(error) => {
   return Promise.reject(error);
