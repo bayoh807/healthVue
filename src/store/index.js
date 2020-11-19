@@ -1,27 +1,54 @@
 import { createStore,mapState, mapMutations, mapActions, mapGetters } from 'vuex';
-
+import router from '@/router';
 
 const store = createStore({
   state: {
     doctor : '',
-    identity : 1,
-    gender : 1,
-    age : 60,
+    identity : '',
+    gender : '',
+    age : '',
     questionNo: '',
     showInfo : false,
     direction : {
-      'no' : '4',
-      'title' : '年齡',
-      'kind' : 2,
+      'no' : '',
+      'title' : '',
+      'kind' : '',
     },
     kind : {
-      'no' : 1,
-      'title' : "白內障手術",
-      'kind' : 1,
+      'no' : '',
+      'title' : '',
+      'kind' : '',
     },
     comment : {
       log : 0,
       back : 0,
+    },
+    move : function(e)
+    {
+          let father = e.target.closest('.slider');
+          let bro = father.nextSibling;
+
+          //還有下一個可以移動的話
+          if(bro != null)
+          {
+            let move = (bro.offsetLeft - father.offsetLeft);
+            //slider框
+            let gp = father.closest('#slider_content');
+
+            father.style.transform = "translate(-" + move + "px, 0%) 1s" ;
+            // console.log(father.style.transform = "translate( -" + move + "px, 0%)");
+            gp.scrollLeft += move;
+          }
+          else
+          {
+            console.log(this.state);
+
+            router.replace({
+                name : 'list',
+                params: { name: 'harry' }
+            });
+            console.log('到底了');
+          }
     }
   },
   getters: {},

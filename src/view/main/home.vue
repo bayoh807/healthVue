@@ -1,4 +1,5 @@
 <template>
+
     <div id="container">    
         <Introduction />
         <div id="slider_content">

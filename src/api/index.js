@@ -9,6 +9,7 @@ export const apiPostHome = (data) => req('post','/home',data);
 export const apiPostList = (data) => req('post','/list',data);
 export const apiPostQuestion = (data) => req('post','/question',data);
 export const apiPostComment = (data) => req('post','/comment',data);
+export const apiPostConnection = (data) => req('post','/connection',data);
 
 
 // export const apiGetCourses = () => req('get','/course/getCourses');
