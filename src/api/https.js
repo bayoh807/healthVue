@@ -32,7 +32,8 @@ const errorHandle = (status,msg) => {
 
 //axios實例
 let instance = axios.create({
-  baseURL : 'http://localhost:8000/api',
+  // baseURL : 'http://localhost:8000/api',
+  baseURL : 'https://junzunyanw24.sg-host.com/apiServer/public/api',
   headers : {
      'Content-Type': 'application/json' ,
 

@@ -158,7 +158,7 @@ export default {
     }
 
     .start .downStart{
-        width: 100%;
+        width: 80%;
         height: 100%;
         max-height: 100%;
         /* position:absolute; */

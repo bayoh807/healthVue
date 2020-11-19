@@ -38,7 +38,7 @@
                 <div class="fromQuestion">
                     <div class="homeTitle">請問您想要了解的內容是?</div>
                     <span class="homeInput">
-                        <FormSelect v-bind:obj="four"/>
+                        <FormSelect :obj="four"/>
                     </span>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                 <div class="fromQuestion">
                     <div class="homeTitle">請問您想從哪個面向了解?</div>
                     <span class="homeInput">
-                        <FormSelect v-bind:obj="five"/>
+                        <FormSelect :obj="five"/>
                     </span>
                 </div>
             </div>
@@ -97,6 +97,9 @@ export default {
         
     },
     created() {
+  
+    },
+    mounted () {
         store.state.doctor = this.$route.params.name
         this.rep = apiPostHome({
             'doctor' : store.state.doctor
@@ -116,8 +119,8 @@ export default {
                         title : val.title
                     })
                 }
-     
             })
+     
         });
     },
     components : {
