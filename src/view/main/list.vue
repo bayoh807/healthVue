@@ -22,6 +22,7 @@ import QuestionBorder from '@/view/components/QuestionBorder.vue';
 import store from '@/store';
 import { apiPostList } from '@/api';
   
+
 export default {
     data(){
         return {

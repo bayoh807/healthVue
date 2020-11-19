@@ -9,7 +9,7 @@
             <div id="videoFrame">
                 <div class="videoTitle" v-if="back == 0">影片訪談 : </div>
                 <div class="videoTitle" v-else>內容說明 : </div>
-                <iframe  width="100%"  :src="video" frameborder="0"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe v-if="back == 0"  width="100%"  :src="video" frameborder="0"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="content contentSet" v-html="content"></div>
         </div>

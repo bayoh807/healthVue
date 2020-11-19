@@ -129,6 +129,10 @@ export default {
 
     }
     .formButton{
+    
+        /* display: inline-block;
+        vertical-align: top; */
+
         cursor: pointer;
         display:block; 
         text-align:justify;
@@ -141,6 +145,14 @@ export default {
         background-size: contain;
         
     }
+    /* .formButton:after{
+        display:inline-block;
+        content:'';
+        overflow:hidden;
+        width:100%;
+        height: 0;
+        
+    } */
     .starts
     {
         width: 100%;
