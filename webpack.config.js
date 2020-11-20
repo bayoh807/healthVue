@@ -13,6 +13,7 @@ module.exports = {
     filename: '[name].bundle.js'
   },
   devServer: {
+    host: '0.0.0.0',
     publicPath: '/dist/',
     contentBase: path.join(__dirname, 'dist'),
     historyApiFallback : true,

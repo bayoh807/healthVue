@@ -51,7 +51,9 @@ export default {
         background-color: rgba(255,255,255,0);
         color: white;
         outline: none;
-        border: 1px transparent solid;
+        border-width: 6px;
+        border-style: solid;
+
         -moz-border-image: -moz-linear-gradient(bottom left,#d9dde0 0%, #18222e 100%);
 	    -webkit-border-image: -webkit-linear-gradient(bottom left,#d9dde0 0%, #18222e 100%);
         border-image: linear-gradient(to top right,#d9dde0 0%, #18222e 100%);
