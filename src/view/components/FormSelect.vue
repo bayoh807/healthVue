@@ -14,7 +14,7 @@ export default {
     data (props){
         
         return {
-         
+          
         }
     },
     created()
