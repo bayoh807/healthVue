@@ -23,13 +23,14 @@
                 <div class="fromQuestion fromRange">
                     <div class="homeTitle">請問患者的年齡是?</div>
                     <span class="homeRange">
-                        <input id="age_range" type="range" min="16" max="100" step="1" v-model="age"  data-darkreader-inline-bgimage="" data-darkreader-inline-bgcolor="">
+                        <input id="age_range" type="range" min="16" max="100" step="1" v-model="age" data-home="false" data-darkreader-inline-bgimage="" data-darkreader-inline-bgcolor="" name="age" >
+                     
                     </span>
                      <span class="homeInput">
                         <span class="homeAge" >
                             {{ age }}<span style="font-size:5vmin;">歲</span>
                         </span>
-                        <span class="formButton" >
+                        <span class="formButton" @click="move($event);changeValue($event)">
                             確認
                         </span>
                     </span>
@@ -89,13 +90,20 @@ export default {
                    val : 0
                }
            ],
-           four : [],
-           five : [],
+            four : [{'name' : 'kind'},[]],
+           five : [{'name' :'direction'},[]],
            age : 58,
+           move : store.state.move
         };
     },
-    methods : {
-        
+     methods : {
+        changeValue(e){
+            let input = document.getElementById('age_range');
+
+            store.state[input.getAttribute('name')] = input.value;
+          
+        },
+    
     },
     created() {
   
@@ -108,17 +116,19 @@ export default {
             response.data.data.map((val,id) => {
                 if(val.kind == 1)
                 {
-                    this.four.push ({
+                     this.four[1].push ({
                         no : val.no,
-                        title : val.title
-                    })
+                        title : val.title,
+                        kind : val.kind,
+                     })
                 }
                 else
                 {
-                    this.five.push ({
+                    this.five[1].push ({
                         no : val.no,
-                        title : val.title
-                    })
+                        title : val.title,
+                        kind : val.kind,
+                     })
                 }
             })
      
@@ -156,6 +166,7 @@ export default {
         font-weight: 300;
     }
     .formButton{
+        -webkit-text-align: center;
         cursor: pointer;
         display:block; 
         text-align:justify;

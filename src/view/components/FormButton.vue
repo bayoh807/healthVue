@@ -66,7 +66,6 @@ export default {
     .formButton{
         /* display: inline-block;
         vertical-align: top; */
-
         cursor: pointer;
         display:block; 
         text-align:justify;

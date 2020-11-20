@@ -1,33 +1,53 @@
 <template>
     <div class="formSelect" >
-        <select name="" id="">
-            <option selected>請選擇▼</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-        </select>
+        <select :name="obj[0].name"  @change="changeSelect($event)" data-home="false">
++            <option >請選擇▼</option>
++            <option v-for="item of obj[1]" :key="item" :value="item.no" :kind="item.kind">{{ item.title }}</option>
+         </select>
+         <div></div>
     </div>
 </template>
 <script>
+import store from '@/store';
 export default {
     props: ['obj'],
     data (props){
         
         return {
-          
+            obj : this.obj,
+            move : store.state.move
         }
     },
     created()
     {
     },
     watch : {
-        'obj' : function(n,o){
-            console.log(n);
-            console.log(o);
-        }
+
+        
     },
     methods:{
-  
+   changeSelect(e)
+        {
+            let select = e.target;
+            if(select.value != null)
+            {
+               select.setAttribute('data-home',true); 
+               this.move(e);
+               let option = select.options[select.selectedIndex];
+            //    console.log(option.value,option.innerHTML ,option.getAttribute('kind'));
+               store.state[select.getAttribute('name')] = {
+                   no : option.value,
+                   title : option.innerHTML,
+                   kind : option.getAttribute('kind')
+               }
+
+                 console.log(store.state);
+            }
+            else
+            {
+              select.setAttribute('data-home',false);  
+            }
+        }
     }
 }
 </script>
@@ -36,13 +56,33 @@ export default {
     .formSelect{
         width: 100%;
         text-align: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        
     }
 
     .formSelect select{
-        border-color:transparent;
-        -webkit-appearance: none;  /* google */
-        -moz-appearance: none;  /* firefox */
-        appearance: none;       /* IE */
+      
+        font-size: 4vmin;
+        border: none;
+        background-color: rgba(255,255,255,0); 
+        box-sizing : border-box; 
+        background: url('./../../media/component/radioButton2.png') no-repeat;
+        background-size: cover;
+        appearance: none;  
+        width: 80%;
+        outline: none;
+        padding: 2vmin 10vmin;
+        color: white;
+
+        text-align:justify;
+        text-align-last:justify; 
+        
+      /**  border-color:transparent;
+        -webkit-appearance: none;  
+        -moz-appearance: none;  
+        appearance: none;      
         width: 80%;
         text-align-last: center;
         text-align: center;
@@ -52,14 +92,14 @@ export default {
         color: white;
         outline: none;
         border-width: 6px;
-        border-style: solid;
+        border-style: solid;*/
 
-        -moz-border-image: -moz-linear-gradient(bottom left,#d9dde0 0%, #18222e 100%);
+      /* -moz-border-image: -moz-linear-gradient(bottom left,#d9dde0 0%, #18222e 100%);
 	    -webkit-border-image: -webkit-linear-gradient(bottom left,#d9dde0 0%, #18222e 100%);
         border-image: linear-gradient(to top right,#d9dde0 0%, #18222e 100%);
-	    border-image-slice: 1;
+	    border-image-slice: 1;*/
     }
-    .formSelect select option{
-        background-color : transparent;
-    }
+    
+   
+  
 </style>
