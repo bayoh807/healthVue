@@ -10,6 +10,7 @@
                 <div class="videoTitle" v-if="back == 0">影片訪談 : </div>
                 <div class="videoTitle" v-else>內容說明 : </div>
                 <iframe v-if="back == 0"  width="100%"  :src="video" frameborder="0"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <img class="backImg" :src='backContent' v-else/>
             </div>
             <div class="content contentSet" v-html="content"></div>
         </div>
@@ -18,7 +19,8 @@
             <Connection v-else/>
         </div>
         <div class="pageBack" >
-            <div class="backList" @click="pageBack()">觀看其他內容</div>
+           <img  :src="otherButton" style="width: 50vmin;height:10vmin" @click="pageBack()" >
+            <!--<div class="backList formButton" @click="pageBack()">觀看其他內容</div>-->
         </div>
     </div>
 </template>
@@ -30,6 +32,7 @@ import { apiPostQuestion } from '@/api';
 import router from '@/router';
 import store from '@/store';
   
+
 export default {
     data(){
         return {
@@ -42,6 +45,8 @@ export default {
             video : '',
             back : '',
             log : '',
+            otherButton  : './../src/media/component/otherButton.png',
+            backContent : './../src/media/component/shutterstock.png',
             showInfo : store.state.showInfo
         }
     },
@@ -60,6 +65,9 @@ export default {
         },
         pageBack()
         {
+            //打開header;
+            document.getElementById('header').removeAttribute('hidden');
+
             store.state.questionNo = '';
             store.state.showInfo = false;
             // store.state.identity = '';
@@ -134,7 +142,21 @@ export default {
 
 </style>
 <style scoped>
+ /*.formButton{
+        cursor: pointer;
+        display:block; 
+        text-align:justify;
+        text-align-last:justify;
+        width: 19vmin;
+        font-size: 4vmin;
+        padding: 2.7vmin 3vmin;
+        box-sizing : border-box; 
+        background: url('./../../media/component/radioButton5.png') no-repeat;
+        background-size: contain;
+        
+    }*/
     #questionPage{
+  
         /* display: flex;
         flex-direction: column;
         align-items: center; */
@@ -142,6 +164,9 @@ export default {
         width: 100vw;
         overflow-x: hidden;
         overflow-y: hidden;
+        animation-name: fadeUpIn;/*跟這個標籤(#square)說要執行的動畫名字*/
+        animation-duration: 5s;/*跟標籤(#square)說這個動畫要跑多久，我設定1秒即是我完成這個動畫需要1秒的時間*/
+        animation-iteration-count: 1; /*跟標籤(#square)說這個動畫要執行幾次，1就是執行1次不會重複*/
     }
 
     .pageHeader{
@@ -151,7 +176,7 @@ export default {
         background: rgb(12,20,30) ;
         width: 100%;
         box-sizing : border-box;
-        padding: 5vmin 0;
+        padding: 6.5vmin 0;
     }
 
     .pageTitle
@@ -192,6 +217,7 @@ export default {
 
     .pageBack
     {
+        width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -242,14 +268,20 @@ export default {
 
     .backList
     {
-        background: red;
+       /* background: red;*/
         color: #A9A9A9;
         width: 45vmin;
         cursor: pointer;
         display: block;
-        text-align: justify;
-        text-align-last: justify;
+        /*text-align: justify;
+        text-align-last: justify;*/
         padding: 3vmin 7vmin;
+    }
+
+    .backImg
+    {
+        width: 100%;
+        height: auto;
     }
 </style>
 

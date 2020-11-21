@@ -42,11 +42,11 @@
       "type": "image/png"
     }
   ],
-  "name": "My Progressive Web App",
-  "short_name": "MyPWA",
+  "name": "ICV",
+  "short_name": "ICV",
   "orientation": "portrait",
   "display": "standalone",
-  "start_url": "/pwa",
+  "start_url": "/",
   "description": "My awesome Progressive Web App!",
   "background_color": "#ffffff"
 }

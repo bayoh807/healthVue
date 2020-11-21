@@ -34,6 +34,9 @@ export default {
     methods : {
         questionPage(question)
         {
+            //隱藏header;
+            document.getElementById('header').setAttribute('hidden','true');
+
             store.state.questionNo = question;
   
             router.replace({

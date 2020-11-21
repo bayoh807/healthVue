@@ -23,7 +23,7 @@
                 <div class="fromQuestion fromRange">
                     <div class="homeTitle">請問患者的年齡是?</div>
                     <span class="homeRange">
-                        <input id="age_range" type="range" min="16" max="100" step="1" v-model="age" data-home="false" data-darkreader-inline-bgimage="" data-darkreader-inline-bgcolor="" name="age" >
+                        <input id="age_range" type="range" min="16" max="100" step="1" v-model="age" data-home="false" data-darkreader-inline-bgimage="" data-darkreader-inline-bgcolor="" name="age" @input="changeAge($event)">
                      
                     </span>
                      <span class="homeInput">
@@ -97,6 +97,16 @@ export default {
         };
     },
      methods : {
+        changeAge(e)
+        {
+            let input = e.target;
+            
+            input.style.background = 'linear-gradient(to right, rgb(78, 139, 200) ' + (1 - ((input.max - input.value) / (input.max - input.min))) * 100 + '% , rgb(35, 57, 84) 0%)';
+
+        
+
+        
+        },
         changeValue(e){
             let input = document.getElementById('age_range');
 
@@ -159,13 +169,18 @@ export default {
         box-sizing: border-box;
         padding: 8vmin 0;
     }
+
+
+
     .homeAge{
+        padding: 0 10vmin;
+        box-sizing: border-box;
         color: #378DCD;
         font-size: 7vmin;
         margin: 0 5vmin;
         font-weight: 300;
     }
-    .formButton{
+   /* .formButton{
         -webkit-text-align: center;
         cursor: pointer;
         display:block; 
@@ -178,7 +193,7 @@ export default {
         background: url('./../../media/component/radioButton.png') no-repeat;
         background-size: contain;
         
-    }
+    }*/
 
     #slider_content{
         display: flex;
@@ -200,7 +215,31 @@ export default {
     {
         display: flex;
         flex-direction: column;
-        width: 80%;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 10vmin;
+    }
+
+    #age_range{
+        background: linear-gradient(to right, rgb(78, 139, 200) 52.381%, rgb(35, 57, 84) 0%);
+    }
+
+    .homeRange input[type=range]
+    {
+        -webkit-appearance: none;
+        width: inherit;
+        height: 0.3rem;
+        border-radius: 10px;
+    }
+
+    .homeRange input[type=range]::-webkit-slider-thumb
+    {
+        -webkit-appearance: none;
+        height: 1rem;
+        width: 1rem;
+        background: rgb(78, 139, 200);
+        border-radius: 50%;
+        box-shadow: 0 .125em .125em #3b4547;
     }
    
 </style>

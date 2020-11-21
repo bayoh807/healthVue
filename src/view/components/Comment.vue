@@ -128,19 +128,21 @@ export default {
         margin: 5vmin 0;
 
     }
+
     .formButton{
         cursor: pointer;
+        letter-spacing: 6px;
         display:block; 
         text-align:justify;
         text-align-last:justify;
         width: 19vmin;
         font-size: 4vmin;
-        padding: 2.7vmin 3vmin;
+        padding: 10px  10px 10px 15px;
         box-sizing : border-box; 
         background: url('./../../media/component/radioButton.png') no-repeat;
-        background-size: contain;
-        
+        background-size: contain;      
     }
+    
     .starts
     {
         width: 100%;

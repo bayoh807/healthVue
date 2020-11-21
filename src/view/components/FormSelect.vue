@@ -63,21 +63,23 @@ export default {
     }
 
     .formSelect select{
-      
-        font-size: 4vmin;
+        font-size: 4.5vmin;
         border: none;
         background-color: rgba(255,255,255,0); 
         box-sizing : border-box; 
-        background: url('./../../media/component/radioButton2.png') no-repeat;
-        background-size: cover;
+        background: url('./../../media/component/radioButton7.png') no-repeat;
+        background-size: contain;
         appearance: none;  
         width: 80%;
         outline: none;
-        padding: 2vmin 10vmin;
+        /*padding: 2vmin 10vmin;
+        letter-spacing: 1.45rem;*/
+        padding: 1vmin 6vmin;
+        letter-spacing: 1.7rem;
         color: white;
 
-        text-align:justify;
-        text-align-last:justify; 
+        /*text-align:justify;
+        text-align-last:justify; */
         
       /**  border-color:transparent;
         -webkit-appearance: none;  

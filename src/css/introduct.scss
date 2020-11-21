@@ -93,11 +93,22 @@
 
                 .homeTitle 
                 {
+                    letter-spacing: 4px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    // display: inline-flex;
+                    // flex-direction: column;
+                    // justify-content: space-between;
                     width: 80%;
                     //文字左右對齊填滿
-                    display:block; 
-                    text-align:justify;
-                    text-align-last:justify;
+                    // display:block; 
+                    // text-align:justify;
+                    // text-align-last:justify;
+                    // text-justify: inter-ideograph; // 这行必加，兼容ie浏览器
+
+
+
                 }
 
                 .homeInput
@@ -110,6 +121,21 @@
                     .inputRadio
                     {
                         display: none;
+                    }
+                    .formButton{
+                        display: contents;
+                        cursor: pointer;
+                        letter-spacing: 6px;
+                        display:block; 
+                        text-align:justify;
+                        text-align-last:justify;
+                        width: 19vmin;
+                        font-size: 4vmin;
+                        padding: 10px  10px 10px 15px;
+                        box-sizing : border-box; 
+                        background: url('./../../media/component/radioButton.png') no-repeat;
+                        background-size: contain;
+                        
                     }
                 }
             }
