@@ -34,6 +34,9 @@ export default {
     methods : {
         questionPage(question)
         {
+            //隱藏header;
+            document.getElementById('header').setAttribute('hidden','true');
+
             store.state.questionNo = question;
   
             router.replace({
@@ -70,7 +73,7 @@ export default {
     {
         display: flex;
         flex-direction: column;
-        /* justify-content: center; */
+        justify-content: center; 
         align-content: center;
         box-sizing : border-box;
         max-width: 15vmin;
@@ -80,7 +83,7 @@ export default {
 
     .listNo {
         color : #378DCD;
-        font-size: 13vmin;
+        font-size: 11vmin;
         /*padding: 0 10vmin;
         width: 10%; */
     }
@@ -94,7 +97,7 @@ export default {
 
    .listSharer
    {
-       font-size: 4vmin;
+       font-size: 3.5vmin;
        color: #A9A9A9;
    } 
    

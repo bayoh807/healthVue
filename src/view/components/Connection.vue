@@ -1,47 +1,160 @@
 <template>
-    <div class="slider" >
-        456
+    <div class="comment">
+        <div class='description'>請留下您的資訊</div>
+        <div class="commentConent">
+            <div class="backInformation">
+                <label  v-if="user_input.length <= 0">
+                    <img :src="user" >
+                </label>
+                <input type="text" name="name" validate="姓名" v-model="user_input" @input="ifInput($event)"/>
+            </div>
+            <div class="backInformation">
+                <label v-if="phone_input.length <= 0">
+                    <img :src="phone" >
+                </label>
+                <input type="text" name="phone"  validate="電話" v-model="phone_input" />
+            </div>
+            <div class="backInformation">
+                <label v-if="mail_input.length <= 0">
+                    <img :src="mail" >
+                </label>
+                <input type="text" name="user_mail"  validate="信箱" v-model="mail_input" />
+            </div>
+        </div>
+        <div class="commentSubmit" >
+            <span class="formButton" @click="checkComment($event)">
+                送出
+            </span>
+        </div>
     </div>
 </template>
 
 <script>
 import { apiPostConnection } from '@/api';
+import store from '@/store';
 
 export default {
     data()
     {
-
+        return {
+            user : './../src/media/icon/user.png',
+            phone : './../src/media/icon/phone.png',
+            mail : './../src/media/icon/mail.png',
+            user_input : '',
+            phone_input : '',
+            mail_input : '',
+            data : {
+                log_no : store.state.comment.log,
+            }
+        };
     },
     methods : {
+        ifInput(e){
+            console.log(123);
+        },
         checkComment(e)
         {
-                let shine = document.querySelectorAll('img[data-shine=true]');
-                let comment = document.querySelector('textarea[name=comment]').value;
-
-                switch (true) {
-                    case shine.length == 0:
-                        alert('未選取星星');
-                        break;
-                    case comment.length == 0:
-                        alert('評論未填寫');
-                        break;
-                    default:
-          
-                        this.rep = apiPostConnection({
-                            log_no: store.state.comment.log,
-                            appraisal: shine.length,
-                            comment: comment
-                        }).then((response) => {
-                            e.target.setAttribute('disabled','disabled');
-                             store.state.showInfo = response.data.code == 1 ? true : false;
-                            // response.data.data.map((val,id) => {
-                            //     console.log(val);
-                                
-                            // })
-                        });
-                        break;
+           let inputs = document.querySelectorAll('input');
+            let data = {};
+        
+           for(let input of inputs)
+           {
+                if(input.value == '')
+                {
+                    alert(input.getAttribute('validate') + '未填');
+                    break;
                 }
+                else
+                {
+                    this.data[input.getAttribute('name')] = input.value;
+                }
+           }
+            this.rep = apiPostConnection(this.data).    
+                    then((response) => {
+                        e.target.setAttribute('disabled','disabled');
+                            store.state.showInfo = response.data.code == 1 ? true : false;
+                   
+                    });
+
         }
     }
 }
 </script>
+<style scoped>
+    .description
+    {
+        letter-spacing: 0.6vmin;
+        text-align: center;
+    }
+    .comment
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        color: white;
+    }
+
+    .backInformation  {
+        margin: 4vmin 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .backInformation label {
+        pointer-events: none;
+        position: absolute;
+        box-sizing: border-box;
+        padding: 0 2vmin;
+    }
+
+    .backInformation input {
+        border: 0;
+        box-sizing: border-box;
+        padding: 2vmin 3vmin;
+        background: #b1b4b9;
+        font-size: 20px;
+        letter-spacing: 2px;
+        font-weight: bold;
+        color: rgb(30,40,61);
+        height: 9vmin;
+        outline: none;
+        resize: none;
+    }
+    .backInformation label img{
+        width: 28vmin;
+    }
+
+    .commentConent
+    {
+        display: flex;
+        flex-direction: column;
+        padding: 1vmin 0;
+    }
+
+    .commentSubmit
+    {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 5vmin 0;
+
+    }
+
+    .formButton{
+        cursor: pointer;
+        letter-spacing: 6px;
+        display:block; 
+        text-align:justify;
+        text-align-last:justify;
+        width: 19vmin;
+        font-size: 4vmin;
+        padding: 10px  10px 10px 15px;
+        box-sizing : border-box; 
+        background: url('./../../media/component/radioButton.png') no-repeat;
+        background-size: contain;      
+    }
+ 
+
+</style>

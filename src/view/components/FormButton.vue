@@ -63,9 +63,7 @@ export default {
 </script>
 
 <style  scoped>
-    .formButton{
-        /* display: inline-block;
-        vertical-align: top; */
+   /* .formButton{
         cursor: pointer;
         display:block; 
         text-align:justify;
@@ -77,7 +75,7 @@ export default {
         background: url('./../../media/component/radioButton.png') no-repeat;
         background-size: contain;
         
-    }
+    }*/
     /* .formButton:after{
         display:inline-block;
         content:'';
@@ -89,7 +87,10 @@ export default {
 
     .selectRadio
     {
-        background-color: #378DCD !important;
+        /*background-color: #378DCD !important;*/
         border-radius: 5px;
+        /* 第一種*/
+        background: radial-gradient(circle farthest-side at center,#858d98,#4e8bc8) !important;
+        box-shadow: -1px 8px 10px -4px rgba(255, 255, 255, 0.5) inset, 1px -8px 10px -4px rgba(0, 0, 0, 0.5) inset;
     }
 </style>
