@@ -35,13 +35,11 @@ export default {
                this.move(e);
                let option = select.options[select.selectedIndex];
             //    console.log(option.value,option.innerHTML ,option.getAttribute('kind'));
-               store.state[select.getAttribute('name')] = {
+               store.state.data[select.getAttribute('name')] = {
                    no : option.value,
                    title : option.innerHTML,
                    kind : option.getAttribute('kind')
                }
-
-                 console.log(store.state);
             }
             else
             {

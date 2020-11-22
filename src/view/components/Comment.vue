@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="commentConent">
-            <textarea name="comment"  maxlength="100" placeholder="評論上限100字"></textarea>
+            <textarea name="comment"  maxlength="100" placeholder="評論上限100字" v-model="comment"></textarea>
         </div>
         <div class="commentSubmit" >
             <span class="formButton" @click="checkComment($event)">
@@ -47,7 +47,8 @@ export default {
             src : './../src/media/component/',
             start : '',
             yes_start : 'start.png',
-            no_start : 'no_start.png'
+            no_start : 'no_start.png',
+            comment : ''
         }
     },
     methods : {
@@ -90,16 +91,18 @@ export default {
                     default:
           
                         this.rep = apiPostComment({
-                            log_no: store.state.comment.log,
+                            log_no: store.state.question.log,
                             appraisal: shine.length,
                             comment: comment
                         }).then((response) => {
-                            e.target.setAttribute('disabled','disabled');
-                             store.state.showInfo = response.data.code == 1 ? true : false;
-                            // response.data.data.map((val,id) => {
-                            //     console.log(val);
-                                
-                            // })
+                            console.log(response.data.code);
+                            if(response.data.code == 1)
+                            {
+                                this.comment = '';
+                                alert(response.data.data.message);
+                                document.querySelector('.pageForm').setAttribute('hidden','true');
+
+                            }
                         });
                         break;
                 }

@@ -8,7 +8,22 @@ const store = createStore({
     gender : '',
     age : '',
     questionNo: '',
-    showInfo : false,
+    showInfo : true,
+    data : {
+      identity : '',
+      gender : '',
+      age : '',
+      direction : {
+        'no' : '',
+        'title' : '',
+        'kind' : '',
+      },
+      kind : {
+        'no' : '',
+        'title' : '',
+        'kind' : '',
+      },
+    },
     direction : {
       'no' : '',
       'title' : '',
@@ -18,6 +33,12 @@ const store = createStore({
       'no' : '',
       'title' : '',
       'kind' : '',
+    },
+    list : {
+
+    },
+    question : {
+
     },
     comment : {
       log : 0,
@@ -41,12 +62,10 @@ const store = createStore({
           }
           else
           {
-            console.log(this.state);
-
-            router.replace({
-                name : 'list',
-                params: { name: 'harry' }
-            });
+            // router.replace({
+            //     name : 'list',
+            //     params: { name: 'harry' }
+            // });
             console.log('到底了');
           }
     }

@@ -35,7 +35,7 @@ export default {
                     this.move(e);
 
                     let radio = button.querySelector('input');
-                    store.state[radio.getAttribute('name')] = radio.value;
+                    store.state.data[radio.getAttribute('name')] = radio.value;
 
                 }
                 else

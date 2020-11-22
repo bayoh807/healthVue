@@ -1,5 +1,5 @@
 <template>
-    <div class="slider" @click="questionPage(question)">
+    <div class="slider" >
         <div class="fromQuestion">
             <div class="listContent">
                 <span class="listLeft listNo">{{ index }}</span>
@@ -32,18 +32,18 @@ export default {
         }
     },
     methods : {
-        questionPage(question)
-        {
-            //隱藏header;
-            document.getElementById('header').setAttribute('hidden','true');
+        // questionPage(question)
+        // {
+        //     //隱藏header;
+        //     document.getElementById('header').setAttribute('hidden','true');
 
-            store.state.questionNo = question;
+        //     store.state.questionNo = question;
   
-            router.replace({
-                name : 'question',
-                params: { name: 'harry' }
-            });
-        }
+        //     // router.replace({
+        //     //     name : 'question',
+        //     //     params: { name: 'harry' }
+        //     // });
+        // }
     },
     beforeCreate(){
         this.index = parseInt(this.index) < 10 ? ('0' + this.index) : this.index;
@@ -73,7 +73,7 @@ export default {
     {
         display: flex;
         flex-direction: column;
-        /* justify-content: center; */
+        justify-content: center; 
         align-content: center;
         box-sizing : border-box;
         max-width: 15vmin;
@@ -83,7 +83,7 @@ export default {
 
     .listNo {
         color : #378DCD;
-        font-size: 13vmin;
+        font-size: 11vmin;
         /*padding: 0 10vmin;
         width: 10%; */
     }
@@ -97,7 +97,7 @@ export default {
 
    .listSharer
    {
-       font-size: 4vmin;
+       font-size: 3.5vmin;
        color: #A9A9A9;
    } 
    

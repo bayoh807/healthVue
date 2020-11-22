@@ -3,22 +3,34 @@
         <div class='description'>請留下您的資訊</div>
         <div class="commentConent">
             <div class="backInformation">
-                <label  v-if="user_input.length <= 0">
+                <label  v-if="(user_input.length ==  0)">
                     <img :src="user" >
                 </label>
-                <input type="text" name="name" validate="姓名" v-model="user_input" />
+                <input type="text" name="name" validate="姓名" 
+                    v-model="user_input"
+                    @focus="checkPoint($event)"
+                    @blur="checkPoint($event)"
+                />
             </div>
             <div class="backInformation">
-                <label v-if="phone_input.length <= 0">
+                <label v-if="(phone_input.length ==  0)">
                     <img :src="phone" >
                 </label>
-                <input type="text" name="phone"  validate="電話" v-model="phone_input" />
+                <input type="text" name="phone"  validate="電話" 
+                    v-model="phone_input" 
+                    @focus="checkPoint($event)"
+                    @blur="checkPoint($event)"
+                />
             </div>
             <div class="backInformation">
-                <label v-if="mail_input.length <= 0">
+                <label v-if="(mail_input.length ==  0)">
                     <img :src="mail" >
                 </label>
-                <input type="text" name="user_mail"  validate="信箱" v-model="mail_input" />
+                <input type="text" name="user_mail"  validate="信箱" 
+                    v-model="mail_input" 
+                    @focus="checkPoint($event)"
+                    @blur="checkPoint($event)"
+                />
             </div>
         </div>
         <div class="commentSubmit" >
@@ -44,11 +56,19 @@ export default {
             phone_input : '',
             mail_input : '',
             data : {
-                log_no : store.state.comment.log,
+                log_no : store.state.question.log,
             }
         };
     },
+    watch : {
+    },
     methods : {
+        checkPoint(e){
+            let input = e.target;
+
+            input.previousSibling.hidden = window.event.type == 'focus' ? true : false;
+   
+        },
         checkComment(e)
         {
            let inputs = document.querySelectorAll('input');
@@ -66,10 +86,19 @@ export default {
                     this.data[input.getAttribute('name')] = input.value;
                 }
            }
+           console.log(this.data);
             this.rep = apiPostConnection(this.data).    
                     then((response) => {
-                        e.target.setAttribute('disabled','disabled');
-                            store.state.showInfo = response.data.code == 1 ? true : false;
+                        console.log(response);
+                        if(response.data.code == 1)
+                        {
+                            this.user_input = '';
+                            this.phone_input= '';
+                            this.mail_input = '';
+                            alert(response.data.data.message);
+                            document.querySelector('.pageForm').setAttribute('hidden','true');
+
+                        }
                    
                     });
 
@@ -120,7 +149,7 @@ export default {
         resize: none;
     }
     .backInformation label img{
-        width: 35vmin;
+        width: 28vmin;
     }
 
     .commentConent

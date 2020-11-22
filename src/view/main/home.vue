@@ -61,7 +61,8 @@ import Introduction from '@/view/components/Introduction.vue';
 import FormButton from '@/view/components/FormButton.vue';
 import FormSelect from '@/view/components/FormSelect.vue';
 import store from '@/store';
-import { apiPostHome } from '@/api';
+import { apiPostHome,apiPostList } from '@/api';
+import { handleError } from 'vue';
 
 export default {
     data(){
@@ -91,10 +92,46 @@ export default {
                }
            ],
             four : [{'name' : 'kind'},[]],
-           five : [{'name' :'direction'},[]],
-           age : 58,
-           move : store.state.move
+            five : [{'name' :'direction'},[]],
+            age : 58,
+            move : store.state.move,
+            goNext :  store.state.data
         };
+    },
+    watch : {
+        goNext : {
+            handler : function(val)
+            {
+                if(val.age != '' && 
+                   val.identity != '' && 
+                   val.gender != '' && 
+                   val.direction.no != '' &&
+                   val.kind.no != ''
+                )
+                {
+                    this.rep = apiPostList({
+                        'identity' : store.state.data.identity,
+                        'age' : store.state.data.age,
+                        'kind' : store.state.data.kind.no,
+                        'direction': store.state.data.direction.no,
+                    }).then((response) => {
+                        store.state.list = response.data.data;
+            
+                        this.$router.push(
+                            {
+                                name : 'list',
+                                params: { name: 'harry' }
+                            });
+                    });
+                }
+            },
+            deep: true,
+            immediate : true
+        }
+ 
+    },
+    computed  :{
+    
     },
      methods : {
         changeAge(e)
@@ -102,15 +139,11 @@ export default {
             let input = e.target;
             
             input.style.background = 'linear-gradient(to right, rgb(78, 139, 200) ' + (1 - ((input.max - input.value) / (input.max - input.min))) * 100 + '% , rgb(35, 57, 84) 0%)';
-
-        
-
-        
         },
         changeValue(e){
             let input = document.getElementById('age_range');
 
-            store.state[input.getAttribute('name')] = input.value;
+            store.state.data[input.getAttribute('name')] = input.value;
           
         },
     
@@ -143,6 +176,8 @@ export default {
             })
      
         });
+
+
     },
     components : {
         Introduction,

@@ -14,8 +14,8 @@
             </div>
             <div class="content contentSet" v-html="content"></div>
         </div>
-        <div class="pageForm"  v-if="showInfo">
-            <Comment v-if="back == 0"/>
+        <div class="pageForm"  >
+            <Comment v-if="back == 0" />
             <Connection v-else/>
         </div>
         <div class="pageBack" >
@@ -36,21 +36,23 @@ import store from '@/store';
 export default {
     data(){
         return {
-            question : '',
-            index : '',
-            title : '',
-            avatar : '',
-            sharer : '',
-            content : '',
-            video : '',
-            back : '',
-            log : '',
+            question : store.state.question,
             otherButton  : './../src/media/component/otherButton.png',
             backContent : './../src/media/component/shutterstock.png',
-            showInfo : store.state.showInfo
+            // showInfo : store.state.showInfo
+        }
+    },
+    watch : {
+        showInfo : {
+               handler : function(){
+                   console.log(123);
+               }
         }
     },
     methods : {
+        showShowinfo (val){
+            console.log(val);
+        },
          checkValue (obj) {
             return obj.content;
             if(obj.video_src == "")
@@ -67,12 +69,10 @@ export default {
         {
             //打開header;
             document.getElementById('header').removeAttribute('hidden');
+            document.querySelector('.pageForm').removeAttribute('hidden');
 
             store.state.questionNo = '';
             store.state.showInfo = false;
-            // store.state.identity = '';
-            // store.state.age = '';
-            // store.state.gender = '';   
 
             router.replace({
                 name : 'list',
@@ -82,54 +82,29 @@ export default {
     },
     beforeCreate() {
         switch (true) {
-            case store.state.questionNo == '':
-            case store.state.identity == '':
-            case store.state.age == '':
-            case store.state.gender == '':   
+            case store.state.data.questionNo == '':
+            case store.state.data.identity == '':
+            case store.state.data.age == '':
+            case store.state.data.gender == '':   
                 router.replace({
-                    name : 'list',
+                    name : 'doctor',
                     params: { name: 'harry' }
                 });
-                break;
+                break; 
         
             default:
                 break;
         }
 
-        this.rep = apiPostQuestion({
-            'no' : store.state.questionNo,
-            'identity' : store.state.identity,
-            'age' : store.state.age,
-            'gender': store.state.gender,
-        }).then((response) => {
-            let question = response.data.data.question;
-            this.avatar = './../src/media/questionAvatar/' + question.avatar;
-            this.sharer = '內容分享者：<br>' + question.sharer
-            // this.title = question.title.replace('{{video}}',"{{" + question.avatar + "}}")
-            this.title = question.title;
-            this.back = question.back;
-            this.content = this.checkValue(question);
-            this.video = question.video_src + '';
-            this.obj = response.data;
-            this.log = response.data.data.log;
-            this.back = question.back
-            this.showInfo = true;
+        this.avatar =  store.state.question.avatar;
+        this.sharer =  store.state.question.sharer;
+        this.title = store.state.question.title;
+        this.back = store.state.question.back;
+        this.content = store.state.question.content;
+        this.video = store.state.question.video;
+        this.log = store.state.question.log;
 
-            store.state.comment = {
-                log : this.log,
-                back : this.back,
-            }
-            // console.log(store.state.comment);
 
-            // store.state.comment = {
-            //     log : response.data.data.log,
-            //     back : question.back
-            // };
-
-            // console.log(store.state.comment);
-
-         
-        });
     },
     components : {
         Connection,
