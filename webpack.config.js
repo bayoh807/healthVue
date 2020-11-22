@@ -13,7 +13,11 @@ module.exports = {
     filename: '[name].bundle.js'
   },
   devServer: {
+<<<<<<< HEAD
     // host: '172.20.10.2',
+=======
+    host: '192.168.212.35',
+>>>>>>> 1c1b194372093b68da3cf20993e3681d87ea7ba7
     publicPath: '/dist/',
     contentBase: path.join(__dirname, 'dist'),
     historyApiFallback : true,

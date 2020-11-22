@@ -13,7 +13,7 @@ const store = createStore({
       identity : '',
       gender : '',
       age : '',
-      direction : {
+      direction : { 
         'no' : '',
         'title' : '',
         'kind' : '',

@@ -133,7 +133,7 @@ export default {
     #questionPage{
   
         /* display: flex;
-        flex-direction: column;
+        flex-direction: column; 
         align-items: center; */
         margin: 0 -2vmin;
         width: 100vw;

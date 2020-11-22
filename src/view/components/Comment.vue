@@ -13,7 +13,7 @@
             <div class="start" @click="changeStart($event)">
                 <img class="downStart"  :src="start" data-shine="false">
                 <!-- <img class="upStart" :src="start"> -->
-            </div>
+            </div> 
             <div class="start" @click="changeStart($event)">
                 <img class="downStart"  :src="start" data-shine="false">
                 <!-- <img class="upStart" :src="start"> -->
