@@ -29,11 +29,46 @@
 
     }
 
-    #container{
+    .container{
         max-width: 100vmin;
         width: 100%;
         box-sizing : border-box; 
         padding: 0 3vmin;
     }
 
+    .loading
+    {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(3, 3, 3, 0.4);
+        
+        .load{
+            position: relative;
+            top: 35%;
+            left: 25%;
+            width: 45%;
+            height: 25%;
+            border: 16px solid transparent;
+            border-radius: 50%;
+            border-top: 16px solid #4e8bc8;
+            border-bottom: 16px solid #4e8bc8;
+            -webkit-animation: spin 1.5s linear infinite;
+            animation: spin 1.5s linear infinite;
+        }
+        
+    }
+
 }
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  

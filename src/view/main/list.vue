@@ -1,5 +1,5 @@
 <template>
-    <div id="container">    
+    <div class="container">    
         <div id="slider_content">
             <QuestionBorder v-for="item in data" :key="item" v-bind:obj="item" @click="questionPage(item.id)" :ref="item.id"/>
         </div>
@@ -56,7 +56,7 @@ export default {
                         log : response.data.data.log,
                         back : question.back
                     };
-                    document.getElementById('header').setAttribute('hidden','true');
+                    // document.getElementById('header').setAttribute('hidden','true');
 
                     this.$router.push(
                     {
@@ -99,6 +99,7 @@ export default {
         }
     },
     beforeCreate() {
+        // document.getElementById('header').removeAttribute('hidden');
         // this.rep = apiPostList({
         //     'identity' : store.state.identity,
         //     'age' : store.state.age,

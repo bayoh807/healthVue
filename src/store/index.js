@@ -3,6 +3,7 @@ import router from '@/router';
 
 const store = createStore({
   state: {
+    loading : false,
     doctor : '',
     identity : '',
     gender : '',

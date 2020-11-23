@@ -86,10 +86,8 @@ export default {
                     this.data[input.getAttribute('name')] = input.value;
                 }
            }
-           console.log(this.data);
             this.rep = apiPostConnection(this.data).    
                     then((response) => {
-                        console.log(response);
                         if(response.data.code == 1)
                         {
                             this.user_input = '';

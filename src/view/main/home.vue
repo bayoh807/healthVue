@@ -1,6 +1,6 @@
 <template>
 
-    <div id="container">    
+    <div class="container">    
         <Introduction />
         <div id="slider_content">
             <div class="slider">
@@ -149,9 +149,11 @@ export default {
     
     },
     created() {
-  
+        
     },
     mounted () {
+        store.state.noActivated  = true;
+
         store.state.doctor = this.$route.params.name
         this.rep = apiPostHome({
             'doctor' : store.state.doctor
@@ -173,6 +175,8 @@ export default {
                         kind : val.kind,
                      })
                 }
+
+                store.state.noActivated  = false;
             })
      
         });

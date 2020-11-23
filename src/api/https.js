@@ -76,7 +76,9 @@ instance.interceptors.response.use(
 
 export default function(method,url,data = null){
   method = method.toLowerCase();
-
+  //打開loading
+  store.state.loading = true;
+  
   switch (method) {
     case 'get':
       return instance.get(url,{params : data });

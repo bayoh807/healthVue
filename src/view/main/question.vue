@@ -29,7 +29,7 @@ import Connection from '@/view/components/Connection.vue';
 import Comment from '@/view/components/Comment.vue';
 // import PageFrom from '@/view/components/PageFrom.vue';
 import { apiPostQuestion } from '@/api';
-import router from '@/router';
+// import router from '@/router';
 import store from '@/store';
   
 
@@ -43,16 +43,10 @@ export default {
         }
     },
     watch : {
-        showInfo : {
-               handler : function(){
-                   console.log(123);
-               }
-        }
+  
     },
     methods : {
-        showShowinfo (val){
-            console.log(val);
-        },
+      
          checkValue (obj) {
             return obj.content;
             if(obj.video_src == "")
@@ -68,25 +62,36 @@ export default {
         pageBack()
         {
             //打開header;
-            document.getElementById('header').removeAttribute('hidden');
+            // document.getElementById('header').removeAttribute('hidden');
             document.querySelector('.pageForm').removeAttribute('hidden');
 
             store.state.questionNo = '';
             store.state.showInfo = false;
 
-            router.replace({
+            this.$router.push(
+            {
                 name : 'list',
                 params: { name: 'harry' }
             });
+            // router.replace({
+            //     name : 'list',
+            //     params: { name: 'harry' }
+            // });
         }
     },
     beforeCreate() {
+        // document.getElementById('header').setAttribute('hidden','true');    
         switch (true) {
             case store.state.data.questionNo == '':
             case store.state.data.identity == '':
             case store.state.data.age == '':
             case store.state.data.gender == '':   
-                router.replace({
+                // router.replace({
+                //     name : 'doctor',
+                //     params: { name: 'harry' }
+                // });
+                this.$router.push(
+                {
                     name : 'doctor',
                     params: { name: 'harry' }
                 });
@@ -117,34 +122,18 @@ export default {
 
 </style>
 <style scoped>
- /*.formButton{
-        cursor: pointer;
-        display:block; 
-        text-align:justify;
-        text-align-last:justify;
-        width: 19vmin;
-        font-size: 4vmin;
-        padding: 2.7vmin 3vmin;
-        box-sizing : border-box; 
-        background: url('./../../media/component/radioButton5.png') no-repeat;
-        background-size: contain;
-        
-    }*/
     #questionPage{
-  
-        /* display: flex;
-        flex-direction: column; 
-        align-items: center; */
-        margin: 0 -2vmin;
-        width: 100vw;
+
+        margin: 0 -3vmin;
+        /*width: 100vw;*/
         overflow-x: hidden;
         overflow-y: hidden;
-        animation-name: fadeUpIn;/*跟這個標籤(#square)說要執行的動畫名字*/
-        animation-duration: 5s;/*跟標籤(#square)說這個動畫要跑多久，我設定1秒即是我完成這個動畫需要1秒的時間*/
-        animation-iteration-count: 1; /*跟標籤(#square)說這個動畫要執行幾次，1就是執行1次不會重複*/
+  
     }
 
     .pageHeader{
+        position: absolute;
+        top: 0;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -152,11 +141,14 @@ export default {
         width: 100%;
         box-sizing : border-box;
         padding: 6.5vmin 0;
+        animation-name: TopToIn;/*跟這個標籤(#square)說要執行的動畫名字*/
+        animation-duration: 1s;/*跟標籤(#square)說這個動畫要跑多久，我設定1秒即是我完成這個動畫需要1秒的時間*/
+        animation-iteration-count: 1; /*跟標籤(#square)說這個動畫要執行幾次，1就是執行1次不會重複*/
     }
 
     .pageTitle
     {
-        margin: 5vmin 6vmin;
+        margin: 5vmin 8vmin;
         padding: 5vmin 8vmin;
         font-size: 5vmin;
         color: #c9c9c9;
@@ -173,12 +165,19 @@ export default {
                 linear-gradient(to left, #c9c9c9, #c9c9c9) right bottom no-repeat,
                 linear-gradient(to left, #c9c9c9, #c9c9c9) right bottom no-repeat;
         background-size: 4px 30px,20px 4px,4px 30px,20px 4px;
+
+        animation-name: RightToIn;/*跟這個標籤(#square)說要執行的動畫名字*/
+        animation-duration: 3s;/*跟標籤(#square)說這個動畫要跑多久，我設定1秒即是我完成這個動畫需要1秒的時間*/
+        animation-iteration-count: 1; /*跟標籤(#square)說這個動畫要執行幾次，1就是執行1次不會重複*/
     }
 
     .pageContent
     {
         color:white;
         margin: 0 0 10vmin 0;
+        animation-name: contentUpIn;/*跟這個標籤(#square)說要執行的動畫名字*/
+        animation-duration: 5s;/*跟標籤(#square)說這個動畫要跑多久，我設定1秒即是我完成這個動畫需要1秒的時間*/
+        animation-iteration-count: 1; /*跟標籤(#square)說這個動畫要執行幾次，1就是執行1次不會重複*/
     }
 
     .pageForm

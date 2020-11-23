@@ -95,7 +95,6 @@ export default {
                             appraisal: shine.length,
                             comment: comment
                         }).then((response) => {
-                            console.log(response.data.code);
                             if(response.data.code == 1)
                             {
                                 this.comment = '';
