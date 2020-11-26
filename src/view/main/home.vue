@@ -2,7 +2,7 @@
 
     <div class="container">    
         <Introduction />
-        <div id="slider_content">
+         <div id="slider_content" @scroll="changeScroll($event)">
             <div class="slider">
                 <div class="fromQuestion">
                     <div class="homeTitle">請問您的身份是?</div>
@@ -53,6 +53,11 @@
                 </div>
             </div>
         </div>
+        <div class="countPersent">
+           <span class="left">◀</span>
+           <span class="center">{{ persent }}%</span>
+           <span class="right">▶</span>
+       </div>
     </div>
 </template>
 
@@ -67,6 +72,7 @@ import { handleError } from 'vue';
 export default {
     data(){
         return {
+            persent : 0,  
            first : [
                {
                    text : '家屬',
@@ -97,7 +103,7 @@ export default {
             move : store.state.move,
             goNext :  store.state.data
         };
-    },
+    }, 
     watch : {
         goNext : {
             handler : function(val)
@@ -134,6 +140,10 @@ export default {
     
     },
      methods : {
+        changeScroll(e){
+           this.persent = Math.round((e.target.scrollLeft / (e.target.scrollWidth - e.target.offsetWidth)) * 100) ;
+           // console.log(this.persent,e.target.scrollLeft,e.target.scrollWidth);
+        },
         changeAge(e)
         {
             let input = e.target;
@@ -200,6 +210,29 @@ export default {
 </style>
 
 <style scoped>
+    .countPersent{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-content: center;
+        color: white;
+        margin: 10vmin 0;
+    }
+    .left,.right{
+        cursor: pointer;
+        font-size: 5vmin;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .center
+    {
+        width: 40%;
+        font-size: 8vmin;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
     .fromQuestion{
         justify-content: space-evenly;
     }
@@ -260,7 +293,7 @@ export default {
     }
 
     #age_range{
-        background: linear-gradient(to right, rgb(78, 139, 200) 52.381%, rgb(35, 57, 84) 0%);
+        background: linear-gradient(to right, rgb(78, 139, 200) 52.381%, rgb(35, 57, 84) 0%) !important;
     }
 
     .homeRange input[type=range]
