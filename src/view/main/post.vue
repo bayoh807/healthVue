@@ -1,22 +1,18 @@
 <template>
-    <div id="questionPage">    
-        <div class="pageHeader">
+    <div class="container">    
+        <!--<div class="pageHeader">
             <img class="sharerImg" :src="avatar" >
             <span class="contentSet" style="text-align: left;" v-html="sharer"></span>
-        </div>
+        </div> -->
         <div class="pageTitle">{{ title }}</div>
         <div class="pageContent">
             <div id="videoFrame">
-                <div class="videoTitle" v-if="back == 0">影片訪談 : </div>
-                <div class="videoTitle" v-else>內容說明 : </div>
-                <iframe v-if="back == 0"  width="100%"  :src="video" frameborder="0"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <img class="backImg" :src='backContent' v-else/>
+                <div class="videoTitle">內容說明 : </div>
             </div>
             <div class="content contentSet" v-html="content"></div>
         </div>
         <div class="pageForm"  >
-            <Comment v-if="back == 0" />
-            <Connection v-else/>
+            <Comment  />
         </div>
         <div class="pageBack" >
            <img  :src="otherButton" style="width: 50vmin;height:10vmin" @click="pageBack()" >
@@ -24,32 +20,15 @@
         </div>
     </div>
 </template>
-
 <script>
 import Connection from '@/view/components/Connection.vue';
-import Comment from '@/view/components/Comment.vue';
-// import PageFrom from '@/view/components/PageFrom.vue';
 import { apiPostPost } from '@/api';
-// import router from '@/router';
 import store from '@/store';
-import { createApp } from 'vue'
-
+  
 
 export default {
-
     data(){
         return {
-            question : store.state.question,
-            otherButton  : './../src/media/component/otherButton.png',
-            backContent : './../src/media/component/shutterstock.png',
-            avatar :  store.state.question.avatar,
-            sharer :  store.state.question.sharer,
-            title : store.state.question.title,
-            back : store.state.question.back,
-            video : store.state.question.video,
-            log : store.state.question.log,
-            content : store.state.question.content,
-            params : store.state.question.params,
             // showInfo : store.state.showInfo
         }
     },
@@ -57,51 +36,8 @@ export default {
   
     },
     methods : {
-        changeContent(val)
-        {
-            //  this.$nextTick(() => {
-            //     //再建立一个vue实例，和内部的p对应
-
-            //     var app2 = createApp({
-            //         data(){
-            //             return {
-            //                 id : 1
-            //             };
-            //         },
-            //         methods: {  //内部的单击事件，这样就可以对应上了，测试通过。
-            //             nClick: function (event) {
-            //                 alert(event.target.innerText)
-            //             }
-            //         }
-            //     }).mount('#test');
-
-                // var app2 = new Vue({
-                //     el: '#test',
-                //     data: {
-                //         // message: '内部 Hello Word'
-                //     },
-                //     methods: {  //内部的单击事件，这样就可以对应上了，测试通过。
-                //         // nClick: function (event) {
-                //         //     alert(event.target.innerText);
-                //         // }
-                //     }
-                // });
-            // });
-
-            // console.log(this.$nextTick);
-
-            // let tt = `<p id="app2" @click="console.log('tesst')">123</p>`;
-            // this.params.map((pa,id) => {
-            //     this.content = this.content.replace(pa.rule,tt);
-            // });
-
-            // return this.content;
-            // console.log(val.params);
-            // store.state.question.content
-            // `${console.log(1)}`;
-            // console.log(val); 
-        },
-        checkValue (obj) {
+      
+         checkValue (obj) {
             return obj.content;
             if(obj.video_src == "")
             {
@@ -131,43 +67,22 @@ export default {
             //     name : 'list',
             //     params: { name: 'harry' }
             // });
-        },
-        postPage(e)
-        {
-          
         }
     },
-    beforeCreate()
-    {
-
-        // console.log(this.content);
-    },
-    created() {
-        // document.getElementById('header').setAttribute('hidden','true');    
-
-
-        // this.avatar =  store.state.question.avatar;
-        // this.sharer =  store.state.question.sharer;
-        // this.title = store.state.question.title;
-        // this.back = store.state.question.back;
-        // this.video = store.state.question.video;
-        // this.log = store.state.question.log;
-        // //要先跑過濾器
-        // this.content = store.state.question.content;
-        // this.params = store.state.question.params;
-
-        // console.log(store.state.question.params,this.params);
-        // this.params.map((item,id) => {
-        //     this.content = this.content.replace(item.rule,'<p id="test" @click="nClick($event)">{{ id }}</p>');
-        // });
-
-        // this.changeContent(this.content);
-
-
+    created() {  
+        console.log(store.state);
+        // this.rep = apiPostPost({
+        //     'log_no' : store.state.question.log,
+        //     'postId' : this.$route.query.postId,
+        // }).then((response) => {
+        //     // let question = response.data.data.question;
+        //     console.log(response);
+        
+        //     // document.getElementById('header').setAttribute('hidden','true');
+        // })
     },
     components : {
-        Connection,
-        Comment
+        Connection
     }
 }
 </script>

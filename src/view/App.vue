@@ -20,7 +20,25 @@ import store from '@/store';
             };
         },
         created(){
-            // console.log(this.$route);
+            switch (true) {
+                case store.state.data.questionNo == '':
+                case store.state.data.identity == '':
+                case store.state.data.age == '':
+                case store.state.data.gender == '':   
+                    // router.replace({
+                    //     name : 'doctor',
+                    //     params: { name: 'harry' }
+                    // });
+                    this.$router.push(
+                    {
+                        name : 'doctor',
+                        params: { name: 'harry' }
+                    });
+                    break; 
+            
+                default:
+                    break;
+            }
         },
         watch : {
             '$route'(to, from) {
@@ -39,6 +57,7 @@ import store from '@/store';
                 //     elem.style.left = pos + 'px'; 
                 //     }
                 // }
+                window.scrollTo(0, 0);
             },
             loading : {
                 handler : function()

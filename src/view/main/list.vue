@@ -54,7 +54,8 @@ export default {
                         content : question.content,
                         video : question.video_src + '',
                         log : response.data.data.log,
-                        back : question.back
+                        back : question.back,
+                        params : response.data.data.params
                     };
                     // document.getElementById('header').setAttribute('hidden','true');
 

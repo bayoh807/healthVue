@@ -20,6 +20,23 @@ const routes = [
       path: '/:name/question',
       component: require('@/view/main/question.vue').default
     },
+    {
+      name : 'postId',
+      path: '/:name/post',
+      query: { 
+        postId : '*'
+      },
+      component: require('@/view/main/post.vue').default
+
+    },
+    // {
+    //   name : 'post',
+    //   path: '/:name/post/:postId',
+    //   // query: { 
+    //   //   postId : '*'
+    //   // },
+    //   component: require('@/view/main/post.vue').default
+    // },
     // {
     //   path: '/:catchAll(.*)',
     // //   component: require('@/views/404.vue').default

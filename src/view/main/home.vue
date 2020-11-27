@@ -23,7 +23,7 @@
                 <div class="fromQuestion fromRange">
                     <div class="homeTitle">請問患者的年齡是?</div>
                     <span class="homeRange">
-                        <input id="age_range" type="range" min="16" max="100" step="1" v-model="age" data-home="false" data-darkreader-inline-bgimage="" data-darkreader-inline-bgcolor="" name="age" @input="changeAge($event)">
+                        <input id="age_range" type="range" min="16" max="100" step="1" v-model="age" data-home="false"  name="age" @input="changeAge($event)">
                      
                     </span>
                      <span class="homeInput">
@@ -65,9 +65,8 @@
 import Introduction from '@/view/components/Introduction.vue';
 import FormButton from '@/view/components/FormButton.vue';
 import FormSelect from '@/view/components/FormSelect.vue';
-import store from '@/store';
 import { apiPostHome,apiPostList } from '@/api';
-import { handleError } from 'vue';
+import store from '@/store';
 
 export default {
     data(){
@@ -149,6 +148,7 @@ export default {
             let input = e.target;
             
             input.style.background = 'linear-gradient(to right, rgb(78, 139, 200) ' + (1 - ((input.max - input.value) / (input.max - input.min))) * 100 + '% , rgb(35, 57, 84) 0%)';
+            console.log(input.style.background);
         },
         changeValue(e){
             let input = document.getElementById('age_range');
@@ -159,9 +159,10 @@ export default {
     
     },
     created() {
-        
+        console.log(this.$route.params);
     },
     mounted () {
+
         store.state.noActivated  = true;
 
         store.state.doctor = this.$route.params.name
@@ -292,13 +293,14 @@ export default {
         padding: 0 10vmin;
     }
 
-    #age_range{
-        background: linear-gradient(to right, rgb(78, 139, 200) 52.381%, rgb(35, 57, 84) 0%) !important;
-    }
+    /* #age_range{
+        background: linear-gradient(to right, rgb(78, 139, 200) 52.381%, rgb(35, 57, 84) 0%) ;
+    } */
 
     .homeRange input[type=range]
     {
         -webkit-appearance: none;
+        background: linear-gradient(to right, rgb(78, 139, 200) 52.381%, rgb(35, 57, 84) 0%) ;
         width: inherit;
         height: 0.3rem;
         border-radius: 10px;
