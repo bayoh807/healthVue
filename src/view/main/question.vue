@@ -28,6 +28,7 @@
 <script>
 import Connection from '@/view/components/Connection.vue';
 import Comment from '@/view/components/Comment.vue';
+import Test from '@/view/component/Test.vue'; 
 // import PageFrom from '@/view/components/PageFrom.vue';
 import { apiPostPost } from '@/api';
 // import router from '@/router';
@@ -167,7 +168,8 @@ export default {
     },
     components : {
         Connection,
-        Comment
+        Comment,
+        Test
     }
 }
 </script>
