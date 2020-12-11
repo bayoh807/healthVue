@@ -20,25 +20,29 @@ import store from '@/store';
             };
         },
         created(){
-            switch (true) {
-                case store.state.data.questionNo == '':
-                case store.state.data.identity == '':
-                case store.state.data.age == '':
-                case store.state.data.gender == '':   
-                    // router.replace({
-                    //     name : 'doctor',
-                    //     params: { name: 'harry' }
-                    // });
-                    this.$router.push(
-                    {
-                        name : 'doctor',
-                        params: { name: 'harry' }
-                    });
-                    break; 
-            
-                default:
-                    break;
-            }
+         
+                switch (true) {
+                    case store.state.data.questionNo == '':
+                    case store.state.data.identity == '':
+                    case store.state.data.age == '':
+                    case store.state.data.gender == '':   
+               
+                        if(window.location.pathname.match('\/post\/') == null)
+                        {
+                            this.$router.push(
+                            {
+                                name : 'doctor',
+                                params: { name: 'harry' }
+                            });
+                        }
+                       
+                        break; 
+                
+                    default:
+                        break;
+                }
+           
+           
         },
         watch : {
             '$route'(to, from) {

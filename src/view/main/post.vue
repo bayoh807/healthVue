@@ -1,23 +1,16 @@
 <template>
-    <div class="container">    
+    <div id="questionPage">    
         <!--<div class="pageHeader">
             <img class="sharerImg" :src="avatar" >
             <span class="contentSet" style="text-align: left;" v-html="sharer"></span>
         </div> -->
-        <div class="pageTitle">{{ title }}</div>
+        <div class="pageTitle">{{ post.title }}</div>
         <div class="pageContent">
-            <div id="videoFrame">
-                <div class="videoTitle">內容說明 : </div>
-            </div>
-            <div class="content contentSet" v-html="content"></div>
+           
+            <div class="content contentSet" v-html="post.content"></div>
         </div>
-        <div class="pageForm"  >
-            <Comment  />
-        </div>
-        <div class="pageBack" >
-           <img  :src="otherButton" style="width: 50vmin;height:10vmin" @click="pageBack()" >
-            <!--<div class="backList formButton" @click="pageBack()">觀看其他內容</div>-->
-        </div>
+
+        
     </div>
 </template>
 <script>
@@ -29,6 +22,7 @@ import store from '@/store';
 export default {
     data(){
         return {
+            post : {}
             // showInfo : store.state.showInfo
         }
     },
@@ -36,50 +30,40 @@ export default {
   
     },
     methods : {
-      
-         checkValue (obj) {
-            return obj.content;
-            if(obj.video_src == "")
-            {
-                return obj.content;
-            }
-            else
-            {
-                return obj.content.replace('{{video}}','<div id="videoFrame"><div class="videoTitle">影片訪談 : </div><iframe  width="100%"  src="' + obj.video_src + '" frameborder="0"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>')
-
-            }
-        },
-        pageBack()
-        {
-            //打開header;
-            // document.getElementById('header').removeAttribute('hidden');
-            document.querySelector('.pageForm').removeAttribute('hidden');
-
-            store.state.questionNo = '';
-            store.state.showInfo = false;
-
-            this.$router.push(
-            {
-                name : 'list',
-                params: { name: 'harry' }
-            });
-            // router.replace({
-            //     name : 'list',
-            //     params: { name: 'harry' }
-            // });
-        }
+   
+ 
     },
     created() {  
-        console.log(store.state);
-        // this.rep = apiPostPost({
-        //     'log_no' : store.state.question.log,
-        //     'postId' : this.$route.query.postId,
-        // }).then((response) => {
-        //     // let question = response.data.data.question;
-        //     console.log(response);
+        this.rep = apiPostPost({
+            'log_no' : 0,
+            'postId' : this.$route.params.postId
+        }).then((response) => {
+            store.state.loading = false;
+            this.post = response.data.data;
+            console.log(this.post);
+            // store.state.question = {
+            //     avatar : './../src/media/questionAvatar/' + question.avatar,
+            //     sharer : '內容分享者：<br>' + question.sharer,
+            //     title : question.title,
+            //     back : question.back,
+            //     content : question.content,
+            //     video : question.video_src + '',
+            //     log : response.data.data.log,
+            //     back : question.back,
+            //     params : question.params
+            // };
+            // document.getElementById('header').setAttribute('hidden','true');
+
+            // this.$router.push(
+            // {
+            //     name : 'question',
+            //     params: { name: 'harry' }
+            // });
+            
+            
         
-        //     // document.getElementById('header').setAttribute('hidden','true');
-        // })
+        });
+
     },
     components : {
         Connection

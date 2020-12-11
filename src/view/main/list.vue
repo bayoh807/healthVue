@@ -55,7 +55,7 @@ export default {
                         video : question.video_src + '',
                         log : response.data.data.log,
                         back : question.back,
-                        params : response.data.data.params
+                        params : question.params
                     };
                     // document.getElementById('header').setAttribute('hidden','true');
 

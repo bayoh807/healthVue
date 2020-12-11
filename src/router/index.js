@@ -22,13 +22,11 @@ const routes = [
     },
     {
       name : 'postId',
-      path: '/:name/post',
-      query: { 
-        postId : '*'
-      },
-      component: require('@/view/main/post.vue').default
+      path: '/post/:postId',
+      component: require('@/view/main/post.vue').default,
 
     },
+  
     // {
     //   name : 'post',
     //   path: '/:name/post/:postId',
