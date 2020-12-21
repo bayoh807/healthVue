@@ -1,23 +1,16 @@
 <template>
-    <div class="container">    
+    <div id="questionPage">    
         <!--<div class="pageHeader">
             <img class="sharerImg" :src="avatar" >
             <span class="contentSet" style="text-align: left;" v-html="sharer"></span>
         </div> -->
-        <div class="pageTitle">{{ title }}</div>
+        <div class="pageTitle">{{ post.title }}</div>
         <div class="pageContent">
-            <div id="videoFrame">
-                <div class="videoTitle">內容說明 : </div>
-            </div>
-            <div class="content contentSet" v-html="content"></div>
+           
+            <div class="content contentSet" v-html="post.content"></div>
         </div>
-        <div class="pageForm"  >
-            <Comment  />
-        </div>
-        <div class="pageBack" >
-           <img  :src="otherButton" style="width: 50vmin;height:10vmin" @click="pageBack()" >
-            <!--<div class="backList formButton" @click="pageBack()">觀看其他內容</div>-->
-        </div>
+
+        
     </div>
 </template>
 <script>
@@ -31,6 +24,7 @@ export default {
     data(){
         console.log(this.postId);
         return {
+            post : {}
             // showInfo : store.state.showInfo
         }
     },
@@ -38,6 +32,7 @@ export default {
   
     },
     methods : {
+<<<<<<< HEAD
       
         pageBack()
         {
@@ -67,9 +62,42 @@ export default {
         // }).then((response) => {
         //     // let question = response.data.data.question;
         //     console.log(response);
+=======
+   
+ 
+    },
+    created() {  
+        this.rep = apiPostPost({
+            'log_no' : 0,
+            'postId' : this.$route.params.postId
+        }).then((response) => {
+            store.state.loading = false;
+            this.post = response.data.data;
+            console.log(this.post);
+            // store.state.question = {
+            //     avatar : './../src/media/questionAvatar/' + question.avatar,
+            //     sharer : '內容分享者：<br>' + question.sharer,
+            //     title : question.title,
+            //     back : question.back,
+            //     content : question.content,
+            //     video : question.video_src + '',
+            //     log : response.data.data.log,
+            //     back : question.back,
+            //     params : question.params
+            // };
+            // document.getElementById('header').setAttribute('hidden','true');
+
+            // this.$router.push(
+            // {
+            //     name : 'question',
+            //     params: { name: 'harry' }
+            // });
+            
+            
+>>>>>>> ae635c5f284083386fc0e14d046498942e31b930
         
-        //     // document.getElementById('header').setAttribute('hidden','true');
-        // })
+        });
+
     },
     components : {
         Connection

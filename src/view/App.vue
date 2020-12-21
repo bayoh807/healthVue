@@ -21,6 +21,7 @@ import store from '@/store';
             };
         },
         created(){
+<<<<<<< HEAD
            console.log(this.$route);
            
             switch (true) {
@@ -58,6 +59,31 @@ import store from '@/store';
                 default:
                     break;
             }
+=======
+         
+                switch (true) {
+                    case store.state.data.questionNo == '':
+                    case store.state.data.identity == '':
+                    case store.state.data.age == '':
+                    case store.state.data.gender == '':   
+               
+                        if(window.location.pathname.match('\/post\/') == null)
+                        {
+                            this.$router.push(
+                            {
+                                name : 'doctor',
+                                params: { name: 'harry' }
+                            });
+                        }
+                       
+                        break; 
+                
+                    default:
+                        break;
+                }
+           
+           
+>>>>>>> ae635c5f284083386fc0e14d046498942e31b930
         },
         watch : {
             '$route'(to, from) {

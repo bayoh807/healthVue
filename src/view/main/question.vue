@@ -90,7 +90,7 @@ export default {
 
             // console.log(this.$nextTick);
 
-            // let tt = `<p id="app2" @click="console.log('tesst')">123</p>`;
+            // let tt = `<Test></Test>`;
             // this.params.map((pa,id) => {
             //     this.content = this.content.replace(pa.rule,tt);
             // });
@@ -161,13 +161,14 @@ export default {
         //     this.content = this.content.replace(item.rule,'<p id="test" @click="nClick($event)">{{ id }}</p>');
         // });
 
-        // this.changeContent(this.content);
+        this.changeContent(this.content);
 
 
     },
     components : {
         Connection,
         Comment
+        
     }
 }
 </script>

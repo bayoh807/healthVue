@@ -21,6 +21,7 @@ const routes = [
       component: require('@/view/main/question.vue').default
     },
     {
+<<<<<<< HEAD
       name : 'post',
       path: '/harry/post',
       query: { 
@@ -28,8 +29,14 @@ const routes = [
       },
       // props: (route) => ({ postId: route.query.postId }),
       component: require('@/view/main/post.vue').default
+=======
+      name : 'postId',
+      path: '/post/:postId',
+      component: require('@/view/main/post.vue').default,
+>>>>>>> ae635c5f284083386fc0e14d046498942e31b930
 
     },
+  
     // {
     //   name : 'post',
     //   path: '/:name/post/:postId',
