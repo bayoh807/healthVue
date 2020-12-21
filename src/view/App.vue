@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { apiPostPost } from '@/api';
 import store from '@/store';
     const app = {
         data(){
@@ -20,21 +21,39 @@ import store from '@/store';
             };
         },
         created(){
+           console.log(this.$route);
+           
             switch (true) {
-                case store.state.data.questionNo == '':
-                case store.state.data.identity == '':
-                case store.state.data.age == '':
-                case store.state.data.gender == '':   
-                    // router.replace({
-                    //     name : 'doctor',
-                    //     params: { name: 'harry' }
-                    // });
-                    this.$router.push(
-                    {
-                        name : 'doctor',
-                        params: { name: 'harry' }
+                case this.$route.name == 'post':
+                    console.log(123);
+                    this.rep = apiPostPost({
+                        'log_no' : 1,
+                        'postId' : this.router.query.postId,
+                    }).then((response) => {
+                        console.log(response);
+                        // store.state.list = response.data.data;
+            
+                        // this.$router.push(
+                        //     {
+                        //         name : 'list',
+                        //         params: { name: 'harry' }
+                        //     });
                     });
-                    break; 
+                    break;
+                // case store.state.data.questionNo == '':
+                // case store.state.data.identity == '':
+                // case store.state.data.age == '':
+                // case store.state.data.gender == '':   
+                //     // router.replace({
+                //     //     name : 'doctor',
+                //     //     params: { name: 'harry' }
+                //     // });
+                //     this.$router.push(
+                //     {
+                //         name : 'doctor',
+                //         params: { name: 'harry' }
+                //     });
+                //     break; 
             
                 default:
                     break;

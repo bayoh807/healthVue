@@ -21,11 +21,12 @@ const routes = [
       component: require('@/view/main/question.vue').default
     },
     {
-      name : 'postId',
-      path: '/:name/post',
+      name : 'post',
+      path: '/harry/post',
       query: { 
         postId : '*'
       },
+      // props: (route) => ({ postId: route.query.postId }),
       component: require('@/view/main/post.vue').default
 
     },

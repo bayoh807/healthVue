@@ -27,7 +27,9 @@ import store from '@/store';
   
 
 export default {
+    props:['postId'],
     data(){
+        console.log(this.postId);
         return {
             // showInfo : store.state.showInfo
         }
@@ -37,18 +39,6 @@ export default {
     },
     methods : {
       
-         checkValue (obj) {
-            return obj.content;
-            if(obj.video_src == "")
-            {
-                return obj.content;
-            }
-            else
-            {
-                return obj.content.replace('{{video}}','<div id="videoFrame"><div class="videoTitle">影片訪談 : </div><iframe  width="100%"  src="' + obj.video_src + '" frameborder="0"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>')
-
-            }
-        },
         pageBack()
         {
             //打開header;
@@ -70,7 +60,7 @@ export default {
         }
     },
     created() {  
-        console.log(store.state);
+        // console.log(store.state);
         // this.rep = apiPostPost({
         //     'log_no' : store.state.question.log,
         //     'postId' : this.$route.query.postId,
